@@ -1,0 +1,336 @@
+{
+  "designSystem": {
+    "appName": "Kids Learning App",
+    "targetAge": "3-8 years",
+    "designPhilosophy": "Playful, colorful, and engaging interface designed for young learners",
+    
+    "colorPalette": {
+      "primary": {
+        "blue": "#4A90E2",
+        "purple": "#8B5CF6",
+        "green": "#10B981",
+        "yellow": "#FCD34D"
+      },
+      "backgrounds": {
+        "blue": "#4A90E2",
+        "purple": "#9333EA",
+        "green": "#059669",
+        "teal": "#14B8A6",
+        "lightBlue": "#E0F2FE"
+      },
+      "accents": {
+        "orange": "#F97316",
+        "pink": "#EC4899",
+        "lime": "#84CC16",
+        "red": "#EF4444"
+      },
+      "neutral": {
+        "white": "#FFFFFF",
+        "lightGray": "#F3F4F6",
+        "gray": "#9CA3AF",
+        "darkGray": "#4B5563"
+      }
+    },
+    
+    "typography": {
+      "fontFamily": {
+        "primary": "Nunito, Rounded, Comic Sans MS, sans-serif",
+        "secondary": "Poppins, sans-serif"
+      },
+      "fontSize": {
+        "hero": "72px",
+        "title": "48px",
+        "heading": "32px",
+        "subheading": "24px",
+        "body": "18px",
+        "small": "14px"
+      },
+      "fontWeight": {
+        "bold": 800,
+        "semibold": 700,
+        "medium": 600,
+        "regular": 400
+      },
+      "textStyle": {
+        "hero": {
+          "fontSize": "72px",
+          "fontWeight": 800,
+          "color": "#FFFFFF",
+          "textShadow": "0px 4px 8px rgba(0,0,0,0.15)"
+        },
+        "title": {
+          "fontSize": "48px",
+          "fontWeight": 800,
+          "color": "#FFFFFF"
+        },
+        "heading": {
+          "fontSize": "32px",
+          "fontWeight": 700,
+          "color": "#1F2937"
+        },
+        "body": {
+          "fontSize": "18px",
+          "fontWeight": 400,
+          "color": "#4B5563"
+        }
+      }
+    },
+    
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "xxl": "48px"
+    },
+    
+    "borderRadius": {
+      "small": "8px",
+      "medium": "16px",
+      "large": "24px",
+      "xlarge": "32px",
+      "full": "9999px"
+    },
+    
+    "shadows": {
+      "card": "0px 8px 24px rgba(0, 0, 0, 0.1)",
+      "button": "0px 4px 12px rgba(0, 0, 0, 0.15)",
+      "elevated": "0px 12px 32px rgba(0, 0, 0, 0.12)"
+    },
+    
+    "components": {
+      "featureCard": {
+        "description": "Large card showcasing app features",
+        "backgroundColor": "gradient or solid color from primary palette",
+        "borderRadius": "32px",
+        "padding": "32px",
+        "contentAlignment": "center",
+        "imageStyle": "rounded corners, white border",
+        "textColor": "#FFFFFF",
+        "shadow": "elevated"
+      },
+      
+      "statsCard": {
+        "description": "Card for displaying user progress/stats",
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": "16px",
+        "padding": "16px",
+        "iconSize": "48px",
+        "titleSize": "24px",
+        "subtitleSize": "16px",
+        "highlightColor": "#FCD34D"
+      },
+      
+      "progressBar": {
+        "height": "12px",
+        "borderRadius": "full",
+        "backgroundColor": "#E5E7EB",
+        "fillColor": "#FCD34D",
+        "animationDuration": "0.3s"
+      },
+      
+      "button": {
+        "primary": {
+          "backgroundColor": "#5B68F4",
+          "color": "#FFFFFF",
+          "borderRadius": "16px",
+          "padding": "16px 32px",
+          "fontSize": "18px",
+          "fontWeight": 700,
+          "shadow": "button"
+        },
+        "secondary": {
+          "backgroundColor": "#FFFFFF",
+          "color": "#1F2937",
+          "borderRadius": "16px",
+          "padding": "12px 24px",
+          "fontSize": "16px",
+          "fontWeight": 600
+        }
+      },
+      
+      "iconButton": {
+        "size": "48px",
+        "borderRadius": "50%",
+        "backgroundColor": "#FFFFFF",
+        "iconColor": "#4B5563",
+        "shadow": "card"
+      },
+      
+      "activityTile": {
+        "description": "Interactive tiles for games/activities",
+        "backgroundColor": "various bright colors",
+        "borderRadius": "16px",
+        "border": "3px solid #FFFFFF",
+        "size": "variable",
+        "iconSize": "32px",
+        "hoverEffect": "scale(1.05)"
+      }
+    },
+    
+    "screens": {
+      "featuresScreen": {
+        "layout": "carousel/slider",
+        "cards": [
+          {
+            "title": "6,000+ activities",
+            "backgroundColor": "#4A90E2",
+            "images": [
+              "xylophone game",
+              "puzzle game",
+              "letter matching",
+              "shape sorting"
+            ],
+            "bottomText": "Ages 3-8"
+          }
+        ]
+      },
+      
+      "parentsDashboard": {
+        "backgroundColor": "#10B981",
+        "title": "Parents room for progress",
+        "components": [
+          {
+            "type": "statsGrid",
+            "items": [
+              {
+                "icon": "graduation-cap",
+                "title": "Logic",
+                "time": "20 minutes",
+                "highlightColor": "#FCD34D"
+              },
+              {
+                "icon": "abc-blocks",
+                "title": "Courses",
+                "time": "4 minutes",
+                "highlightColor": "#FCD34D"
+              },
+              {
+                "icon": "gamepad",
+                "title": "Games",
+                "time": "2 minutes",
+                "highlightColor": "#FCD34D"
+              },
+              {
+                "icon": "robot",
+                "title": "Other",
+                "time": "6 minutes",
+                "highlightColor": "#FCD34D"
+              }
+            ]
+          },
+          {
+            "type": "progressCard",
+            "backgroundColor": "#5B68F4",
+            "title": "Total progress",
+            "percentage": "39%",
+            "progressBarColor": "#FCD34D",
+            "ctaButton": "Detailed report"
+          }
+        ],
+        "bottomNav": [
+          "Stats",
+          "Scope",
+          "Certificates",
+          "Rankings",
+          "Settings"
+        ]
+      },
+      
+      "worksheetsScreen": {
+        "backgroundColor": "#9333EA",
+        "title": "100+ worksheets",
+        "previewImages": [
+          "number tracing",
+          "character coloring",
+          "counting exercises"
+        ],
+        "imageStyle": "stacked with rotation",
+        "pencilIcon": true
+      },
+      
+      "learningTracksScreen": {
+        "backgroundColor": "#10B981",
+        "title": "Tailored learning tracks",
+        "tracks": [
+          {
+            "name": "Read & write",
+            "icon": "abc-dice",
+            "previewImage": "large letter A with tracing"
+          },
+          {
+            "name": "Color & draw",
+            "icon": "palette",
+            "previewImage": "cat coloring page",
+            "toolsShown": "color palette, pencil, brush"
+          }
+        ]
+      }
+    },
+    
+    "animations": {
+      "transitions": {
+        "duration": "300ms",
+        "easing": "ease-in-out"
+      },
+      "hover": {
+        "scale": 1.05,
+        "duration": "200ms"
+      },
+      "tap": {
+        "scale": 0.95,
+        "duration": "100ms"
+      },
+      "pageTransition": {
+        "type": "slide",
+        "duration": "400ms"
+      }
+    },
+    
+    "iconography": {
+      "style": "rounded, playful, colorful",
+      "strokeWidth": "2px",
+      "size": {
+        "small": "24px",
+        "medium": "32px",
+        "large": "48px",
+        "xlarge": "64px"
+      },
+      "commonIcons": [
+        "graduation-cap",
+        "abc-blocks",
+        "gamepad",
+        "robot",
+        "palette",
+        "pencil",
+        "music-note",
+        "puzzle-piece"
+      ]
+    },
+    
+    "illustrations": {
+      "style": "cute, simple, cartoon-like",
+      "characters": {
+        "animals": ["dog", "cat", "bunny"],
+        "kids": ["diverse children characters"],
+        "objects": ["school items", "toys", "educational tools"]
+      },
+      "colorful": true,
+      "outlines": "bold black strokes"
+    },
+    
+    "accessibility": {
+      "minimumTapTarget": "44px",
+      "contrastRatio": "4.5:1 minimum",
+      "fontSize": "minimum 16px for body text",
+      "voiceOver": "all interactive elements labeled"
+    },
+    
+    "responsiveDesign": {
+      "phone": "375px - 428px",
+      "tablet": "768px - 1024px",
+      "orientation": "both portrait and landscape supported"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "vowels": [
+    {
+      "id": "A",
+      "character": "A",
+      "name": "A",
+      "words": [
+        { "id": "a-1", "text": "Apple", "meaning": "a fruit", "image": "" },
+        { "id": "a-2", "text": "Ant", "meaning": "an insect", "image": "" }
+      ]
+    },
+    {
+      "id": "E",
+      "character": "E",
+      "name": "E",
+      "words": [
+        { "id": "e-1", "text": "Elephant", "meaning": "a large animal", "image": "" },
+        { "id": "e-2", "text": "Egg", "meaning": "food from a chicken", "image": "" }
+      ]
+    },
+    {
+      "id": "I",
+      "character": "I",
+      "name": "I",
+      "words": [
+        { "id": "i-1", "text": "Ice", "meaning": "frozen water", "image": "" },
+        { "id": "i-2", "text": "Igloo", "meaning": "ice house", "image": "" }
+      ]
+    },
+    {
+      "id": "O",
+      "character": "O",
+      "name": "O",
+      "words": [
+        { "id": "o-1", "text": "Orange", "meaning": "a fruit", "image": "" },
+        { "id": "o-2", "text": "Owl", "meaning": "a bird", "image": "" }
+      ]
+    },
+    {
+      "id": "U",
+      "character": "U",
+      "name": "U",
+      "words": [
+        { "id": "u-1", "text": "Umbrella", "meaning": "keeps you dry", "image": "" },
+        { "id": "u-2", "text": "Unicorn", "meaning": "a magical animal", "image": "" }
+      ]
+    }
+  ],
+  "consonants": [
+    { "id": "B", "character": "B", "name": "B", "words": [ { "id": "b-1", "text": "Ball", "meaning": "a round toy", "image": "" } ] },
+    { "id": "C", "character": "C", "name": "C", "words": [ { "id": "c-1", "text": "Cat", "meaning": "a pet animal", "image": "" } ] },
+    { "id": "D", "character": "D", "name": "D", "words": [ { "id": "d-1", "text": "Dog", "meaning": "a pet animal", "image": "" } ] },
+    { "id": "F", "character": "F", "name": "F", "words": [ { "id": "f-1", "text": "Fish", "meaning": "an animal that swims", "image": "" } ] },
+    { "id": "G", "character": "G", "name": "G", "words": [ { "id": "g-1", "text": "Goat", "meaning": "a farm animal", "image": "" } ] },
+    { "id": "H", "character": "H", "name": "H", "words": [ { "id": "h-1", "text": "Hat", "meaning": "clothing for the head", "image": "" } ] },
+    { "id": "J", "character": "J", "name": "J", "words": [ { "id": "j-1", "text": "Jam", "meaning": "sweet fruit spread", "image": "" } ] },
+    { "id": "K", "character": "K", "name": "K", "words": [ { "id": "k-1", "text": "Kite", "meaning": "flies in the wind", "image": "" } ] },
+    { "id": "L", "character": "L", "name": "L", "words": [ { "id": "l-1", "text": "Lion", "meaning": "a big cat", "image": "" } ] },
+    { "id": "M", "character": "M", "name": "M", "words": [ { "id": "m-1", "text": "Moon", "meaning": "in the night sky", "image": "" } ] },
+    { "id": "N", "character": "N", "name": "N", "words": [ { "id": "n-1", "text": "Nest", "meaning": "a bird's home", "image": "" } ] },
+    { "id": "P", "character": "P", "name": "P", "words": [ { "id": "p-1", "text": "Pen", "meaning": "used for writing", "image": "" } ] },
+    { "id": "Q", "character": "Q", "name": "Q", "words": [ { "id": "q-1", "text": "Queen", "meaning": "a royal woman", "image": "" } ] },
+    { "id": "R", "character": "R", "name": "R", "words": [ { "id": "r-1", "text": "Rabbit", "meaning": "a hopping animal", "image": "" } ] },
+    { "id": "S", "character": "S", "name": "S", "words": [ { "id": "s-1", "text": "Sun", "meaning": "the star of our solar system", "image": "" } ] },
+    { "id": "T", "character": "T", "name": "T", "words": [ { "id": "t-1", "text": "Tree", "meaning": "a tall plant", "image": "" } ] },
+    { "id": "V", "character": "V", "name": "V", "words": [ { "id": "v-1", "text": "Van", "meaning": "a vehicle", "image": "" } ] },
+    { "id": "W", "character": "W", "name": "W", "words": [ { "id": "w-1", "text": "Water", "meaning": "we drink it", "image": "" } ] },
+    { "id": "X", "character": "X", "name": "X", "words": [ { "id": "x-1", "text": "Box", "meaning": "a container", "image": "" } ] },
+    { "id": "Y", "character": "Y", "name": "Y", "words": [ { "id": "y-1", "text": "Yak", "meaning": "an animal with long hair", "image": "" } ] },
+    { "id": "Z", "character": "Z", "name": "Z", "words": [ { "id": "z-1", "text": "Zebra", "meaning": "a striped animal", "image": "" } ] }
+  ]
+}

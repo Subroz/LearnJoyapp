@@ -1,0 +1,47 @@
+{
+  "expo": {
+  "name": "LearnJoy",
+    "slug": "LearnJoy",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#645BFF"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aichildrenlearning.app"
+    },
+  "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#645BFF"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.aichildrenlearning.app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.INTERNET",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+  },
+  "scheme": "learnjoy",
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-av",
+      [
+        "expo-file-system",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos to save drawings."
+        }
+      ]
+    ]
+  }
+}

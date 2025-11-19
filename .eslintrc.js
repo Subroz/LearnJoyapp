@@ -1,0 +1,13 @@
+module.exports = {
+  extends: [
+    'expo',
+    '@react-native',
+  ],
+  rules: {
+    'react-native/no-inline-styles': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    'react-hooks/exhaustive-deps': 'warn',
+  },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+};

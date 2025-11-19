@@ -1,0 +1,959 @@
+{
+  "swaraborna": [
+    {
+      "id": "a",
+      "character": "অ",
+      "name": "অ",
+      "pronunciation": "o",
+      "words": [
+        {
+          "id": "a1",
+          "text": "অজগর",
+          "pronunciation": "ojogor",
+          "meaning": "Python snake",
+          "image": "python_snake.jpg"
+        },
+        {
+          "id": "a2",
+          "text": "অলংকার",
+          "pronunciation": "olongkar",
+          "meaning": "Jewelry",
+          "image": "jewelry.jpg"
+        }
+      ]
+    },
+    {
+      "id": "aa",
+      "character": "আ",
+      "name": "আ",
+      "pronunciation": "a",
+      "words": [
+        {
+          "id": "aa1",
+          "text": "আম",
+          "pronunciation": "aam",
+          "meaning": "Mango",
+          "image": "mango.jpg"
+        },
+        {
+          "id": "aa2",
+          "text": "আকাশ",
+          "pronunciation": "aakash",
+          "meaning": "Sky",
+          "image": "sky.jpg"
+        }
+      ]
+    },
+    {
+      "id": "i",
+      "character": "ই",
+      "name": "ই",
+      "pronunciation": "e",
+      "words": [
+        {
+          "id": "i1",
+          "text": "ইঁদুর",
+          "pronunciation": "indur",
+          "meaning": "Mouse",
+          "image": "mouse.jpg"
+        },
+        {
+          "id": "i2",
+          "text": "ইচ্ছা",
+          "pronunciation": "iccha",
+          "meaning": "Wish",
+          "image": "wish.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ii",
+      "character": "ঈ",
+      "name": "ঈ",
+      "pronunciation": "ei",
+      "words": [
+        {
+          "id": "ii1",
+          "text": "ঈগল",
+          "pronunciation": "igol",
+          "meaning": "Eagle",
+          "image": "eagle.jpg"
+        },
+        {
+          "id": "ii2",
+          "text": "ঈশ্বর",
+          "pronunciation": "ishshor",
+          "meaning": "God",
+          "image": "god.jpg"
+        }
+      ]
+    },
+    {
+      "id": "u",
+      "character": "উ",
+      "name": "উ",
+      "pronunciation": "u",
+      "words": [
+        {
+          "id": "u1",
+          "text": "উট",
+          "pronunciation": "ut",
+          "meaning": "Camel",
+          "image": "camel.jpg"
+        },
+        {
+          "id": "u2",
+          "text": "উদ্যান",
+          "pronunciation": "udyan",
+          "meaning": "Garden",
+          "image": "garden.jpg"
+        }
+      ]
+    },
+    {
+      "id": "uu",
+      "character": "ঊ",
+      "name": "ঊ",
+      "pronunciation": "uu",
+      "words": [
+        {
+          "id": "uu1",
+          "text": "ঊনবিংশ",
+          "pronunciation": "unobingsho",
+          "meaning": "Nineteenth",
+          "image": "number_19.jpg"
+        }
+      ]
+    },
+    {
+      "id": "r",
+      "character": "ঋ",
+      "name": "ঋ",
+      "pronunciation": "ri",
+      "words": [
+        {
+          "id": "r1",
+          "text": "ঋষি",
+          "pronunciation": "rishi",
+          "meaning": "Sage",
+          "image": "sage.jpg"
+        }
+      ]
+    },
+    {
+      "id": "e",
+      "character": "এ",
+      "name": "এ",
+      "pronunciation": "e",
+      "words": [
+        {
+          "id": "e1",
+          "text": "এক",
+          "pronunciation": "ek",
+          "meaning": "One",
+          "image": "one.jpg"
+        },
+        {
+          "id": "e2",
+          "text": "এলাচ",
+          "pronunciation": "elach",
+          "meaning": "Cardamom",
+          "image": "cardamom.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "character": "ঐ",
+      "name": "ঐ",
+      "pronunciation": "oi",
+      "words": [
+        {
+          "id": "ai1",
+          "text": "ঐক্য",
+          "pronunciation": "oikko",
+          "meaning": "Unity",
+          "image": "unity.jpg"
+        }
+      ]
+    },
+    {
+      "id": "o",
+      "character": "ও",
+      "name": "ও",
+      "pronunciation": "o",
+      "words": [
+        {
+          "id": "o1",
+          "text": "ওজন",
+          "pronunciation": "ojon",
+          "meaning": "Weight",
+          "image": "weight.jpg"
+        },
+        {
+          "id": "o2",
+          "text": "ওষুধ",
+          "pronunciation": "oshudh",
+          "meaning": "Medicine",
+          "image": "medicine.jpg"
+        }
+      ]
+    },
+    {
+      "id": "au",
+      "character": "ঔ",
+      "name": "ঔ",
+      "pronunciation": "ou",
+      "words": [
+        {
+          "id": "au1",
+          "text": "ঔষধ",
+          "pronunciation": "oushodh",
+          "meaning": "Medicine",
+          "image": "medicine.jpg"
+        }
+      ]
+    }
+  ],
+  "banjonborno": [
+    {
+      "id": "ka",
+      "character": "ক",
+      "name": "ক",
+      "pronunciation": "ko",
+      "words": [
+        {
+          "id": "ka1",
+          "text": "কলম",
+          "pronunciation": "kolom",
+          "meaning": "Pen",
+          "image": "pen.jpg"
+        },
+        {
+          "id": "ka2",
+          "text": "কাক",
+          "pronunciation": "kak",
+          "meaning": "Crow",
+          "image": "crow.jpg"
+        }
+      ]
+    },
+    {
+      "id": "kha",
+      "character": "খ",
+      "name": "খ",
+      "pronunciation": "kho",
+      "words": [
+        {
+          "id": "kha1",
+          "text": "খেলনা",
+          "pronunciation": "khelna",
+          "meaning": "Toy",
+          "image": "toy.jpg"
+        },
+        {
+          "id": "kha2",
+          "text": "খরগোশ",
+          "pronunciation": "khorgosh",
+          "meaning": "Rabbit",
+          "image": "rabbit.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ga",
+      "character": "গ",
+      "name": "গ",
+      "pronunciation": "go",
+      "words": [
+        {
+          "id": "ga1",
+          "text": "গরু",
+          "pronunciation": "goru",
+          "meaning": "Cow",
+          "image": "cow.jpg"
+        },
+        {
+          "id": "ga2",
+          "text": "গাছ",
+          "pronunciation": "gach",
+          "meaning": "Tree",
+          "image": "tree.jpg"
+        }
+      ]
+    },
+    {
+      "id": "gha",
+      "character": "ঘ",
+      "name": "ঘ",
+      "pronunciation": "gho",
+      "words": [
+        {
+          "id": "gha1",
+          "text": "ঘড়ি",
+          "pronunciation": "ghori",
+          "meaning": "Clock",
+          "image": "clock.jpg"
+        },
+        {
+          "id": "gha2",
+          "text": "ঘর",
+          "pronunciation": "ghor",
+          "meaning": "House",
+          "image": "house.jpg"
+        }
+      ]
+    },
+    {
+      "id": "nga",
+      "character": "ঙ",
+      "name": "ঙ",
+      "pronunciation": "ngo",
+      "words": [
+        {
+          "id": "nga1",
+          "text": "ঙ",
+          "pronunciation": "ngo",
+          "meaning": "Ng (consonant)",
+          "image": "ng.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ca",
+      "character": "চ",
+      "name": "চ",
+      "pronunciation": "cho",
+      "words": [
+        {
+          "id": "ca1",
+          "text": "চাঁদ",
+          "pronunciation": "chand",
+          "meaning": "Moon",
+          "image": "moon.jpg"
+        },
+        {
+          "id": "ca2",
+          "text": "চশমা",
+          "pronunciation": "choshma",
+          "meaning": "Glasses",
+          "image": "glasses.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cha",
+      "character": "ছ",
+      "name": "ছ",
+      "pronunciation": "chho",
+      "words": [
+        {
+          "id": "cha1",
+          "text": "ছাতা",
+          "pronunciation": "chata",
+          "meaning": "Umbrella",
+          "image": "umbrella.jpg"
+        },
+        {
+          "id": "cha2",
+          "text": "ছাগল",
+          "pronunciation": "chagol",
+          "meaning": "Goat",
+          "image": "goat.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ja",
+      "character": "জ",
+      "name": "জ",
+      "pronunciation": "jo",
+      "words": [
+        {
+          "id": "ja1",
+          "text": "জল",
+          "pronunciation": "jol",
+          "meaning": "Water",
+          "image": "water.jpg"
+        },
+        {
+          "id": "ja2",
+          "text": "জাহাজ",
+          "pronunciation": "jahaj",
+          "meaning": "Ship",
+          "image": "ship.jpg"
+        }
+      ]
+    },
+    {
+      "id": "jha",
+      "character": "ঝ",
+      "name": "ঝ",
+      "pronunciation": "jho",
+      "words": [
+        {
+          "id": "jha1",
+          "text": "ঝাল",
+          "pronunciation": "jhal",
+          "meaning": "Spicy",
+          "image": "spicy.jpg"
+        },
+        {
+          "id": "jha2",
+          "text": "ঝড়",
+          "pronunciation": "jhor",
+          "meaning": "Storm",
+          "image": "storm.jpg"
+        }
+      ]
+    },
+    {
+      "id": "nya",
+      "character": "ঞ",
+      "name": "ঞ",
+      "pronunciation": "nyo",
+      "words": [
+        {
+          "id": "nya1",
+          "text": "ঞ",
+          "pronunciation": "nyo",
+          "meaning": "Nya (consonant)",
+          "image": "nya.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ta",
+      "character": "ট",
+      "name": "ট",
+      "pronunciation": "to",
+      "words": [
+        {
+          "id": "ta1",
+          "text": "টমেটো",
+          "pronunciation": "tomato",
+          "meaning": "Tomato",
+          "image": "tomato.jpg"
+        },
+        {
+          "id": "ta2",
+          "text": "টাকা",
+          "pronunciation": "taka",
+          "meaning": "Money",
+          "image": "money.jpg"
+        }
+      ]
+    },
+    {
+      "id": "tha",
+      "character": "ঠ",
+      "name": "ঠ",
+      "pronunciation": "tho",
+      "words": [
+        {
+          "id": "tha1",
+          "text": "ঠান্ডা",
+          "pronunciation": "thanda",
+          "meaning": "Cold",
+          "image": "cold.jpg"
+        }
+      ]
+    },
+    {
+      "id": "da",
+      "character": "ড",
+      "name": "ড",
+      "pronunciation": "do",
+      "words": [
+        {
+          "id": "da1",
+          "text": "ডিম",
+          "pronunciation": "dim",
+          "meaning": "Egg",
+          "image": "egg.jpg"
+        }
+      ]
+    },
+    {
+      "id": "dha",
+      "character": "ঢ",
+      "name": "ঢ",
+      "pronunciation": "dho",
+      "words": [
+        {
+          "id": "dha1",
+          "text": "ঢোল",
+          "pronunciation": "dhol",
+          "meaning": "Drum",
+          "image": "drum.jpg"
+        }
+      ]
+    },
+    {
+      "id": "na",
+      "character": "ণ",
+      "name": "ণ",
+      "pronunciation": "no",
+      "words": [
+        {
+          "id": "na1",
+          "text": "ণ",
+          "pronunciation": "no",
+          "meaning": "Na (consonant)",
+          "image": "na.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ta2",
+      "character": "ত",
+      "name": "ত",
+      "pronunciation": "to",
+      "words": [
+        {
+          "id": "ta2_1",
+          "text": "তারা",
+          "pronunciation": "tara",
+          "meaning": "Star",
+          "image": "star.jpg"
+        },
+        {
+          "id": "ta2_2",
+          "text": "তেল",
+          "pronunciation": "tel",
+          "meaning": "Oil",
+          "image": "oil.jpg"
+        }
+      ]
+    },
+    {
+      "id": "tha2",
+      "character": "থ",
+      "name": "থ",
+      "pronunciation": "tho",
+      "words": [
+        {
+          "id": "tha2_1",
+          "text": "থালা",
+          "pronunciation": "thala",
+          "meaning": "Plate",
+          "image": "plate.jpg"
+        }
+      ]
+    },
+    {
+      "id": "da2",
+      "character": "দ",
+      "name": "দ",
+      "pronunciation": "do",
+      "words": [
+        {
+          "id": "da2_1",
+          "text": "দুই",
+          "pronunciation": "dui",
+          "meaning": "Two",
+          "image": "two.jpg"
+        },
+        {
+          "id": "da2_2",
+          "text": "দুধ",
+          "pronunciation": "dudh",
+          "meaning": "Milk",
+          "image": "milk.jpg"
+        }
+      ]
+    },
+    {
+      "id": "dha2",
+      "character": "ধ",
+      "name": "ধ",
+      "pronunciation": "dho",
+      "words": [
+        {
+          "id": "dha2_1",
+          "text": "ধন",
+          "pronunciation": "dhon",
+          "meaning": "Wealth",
+          "image": "wealth.jpg"
+        }
+      ]
+    },
+    {
+      "id": "na2",
+      "character": "ন",
+      "name": "ন",
+      "pronunciation": "no",
+      "words": [
+        {
+          "id": "na2_1",
+          "text": "নাক",
+          "pronunciation": "nak",
+          "meaning": "Nose",
+          "image": "nose.jpg"
+        },
+        {
+          "id": "na2_2",
+          "text": "নৌকা",
+          "pronunciation": "nouka",
+          "meaning": "Boat",
+          "image": "boat.jpg"
+        }
+      ]
+    },
+    {
+      "id": "pa",
+      "character": "প",
+      "name": "প",
+      "pronunciation": "po",
+      "words": [
+        {
+          "id": "pa1",
+          "text": "পাখি",
+          "pronunciation": "pakhi",
+          "meaning": "Bird",
+          "image": "bird.jpg"
+        },
+        {
+          "id": "pa2",
+          "text": "পানি",
+          "pronunciation": "pani",
+          "meaning": "Water",
+          "image": "water.jpg"
+        }
+      ]
+    },
+    {
+      "id": "pha",
+      "character": "ফ",
+      "name": "ফ",
+      "pronunciation": "pho",
+      "words": [
+        {
+          "id": "pha1",
+          "text": "ফুল",
+          "pronunciation": "phul",
+          "meaning": "Flower",
+          "image": "flower.jpg"
+        },
+        {
+          "id": "pha2",
+          "text": "ফল",
+          "pronunciation": "phol",
+          "meaning": "Fruit",
+          "image": "fruit.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ba",
+      "character": "ব",
+      "name": "ব",
+      "pronunciation": "bo",
+      "words": [
+        {
+          "id": "ba1",
+          "text": "বই",
+          "pronunciation": "boi",
+          "meaning": "Book",
+          "image": "book.jpg"
+        },
+        {
+          "id": "ba2",
+          "text": "বসন্ত",
+          "pronunciation": "boshonto",
+          "meaning": "Spring",
+          "image": "spring.jpg"
+        }
+      ]
+    },
+    {
+      "id": "bha",
+      "character": "ভ",
+      "name": "ভ",
+      "pronunciation": "bho",
+      "words": [
+        {
+          "id": "bha1",
+          "text": "ভাত",
+          "pronunciation": "bhat",
+          "meaning": "Rice",
+          "image": "rice.jpg"
+        },
+        {
+          "id": "bha2",
+          "text": "ভালোবাসা",
+          "pronunciation": "bhalobasha",
+          "meaning": "Love",
+          "image": "love.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ma",
+      "character": "ম",
+      "name": "ম",
+      "pronunciation": "mo",
+      "words": [
+        {
+          "id": "ma1",
+          "text": "মা",
+          "pronunciation": "ma",
+          "meaning": "Mother",
+          "image": "mother.jpg"
+        },
+        {
+          "id": "ma2",
+          "text": "মাছ",
+          "pronunciation": "mach",
+          "meaning": "Fish",
+          "image": "fish.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ya",
+      "character": "য",
+      "name": "য",
+      "pronunciation": "jo",
+      "words": [
+        {
+          "id": "ya1",
+          "text": "যানবাহন",
+          "pronunciation": "janobahon",
+          "meaning": "Vehicle",
+          "image": "vehicle.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ra",
+      "character": "র",
+      "name": "র",
+      "pronunciation": "ro",
+      "words": [
+        {
+          "id": "ra1",
+          "text": "রাত",
+          "pronunciation": "rat",
+          "meaning": "Night",
+          "image": "night.jpg"
+        },
+        {
+          "id": "ra2",
+          "text": "রং",
+          "pronunciation": "rong",
+          "meaning": "Color",
+          "image": "color.jpg"
+        }
+      ]
+    },
+    {
+      "id": "la",
+      "character": "ল",
+      "name": "ল",
+      "pronunciation": "lo",
+      "words": [
+        {
+          "id": "la1",
+          "text": "লাল",
+          "pronunciation": "lal",
+          "meaning": "Red",
+          "image": "red.jpg"
+        },
+        {
+          "id": "la2",
+          "text": "লেবু",
+          "pronunciation": "lebu",
+          "meaning": "Lemon",
+          "image": "lemon.jpg"
+        }
+      ]
+    },
+    {
+      "id": "sha",
+      "character": "শ",
+      "name": "শ",
+      "pronunciation": "sho",
+      "words": [
+        {
+          "id": "sha1",
+          "text": "শব্দ",
+          "pronunciation": "shobdo",
+          "meaning": "Word",
+          "image": "word.jpg"
+        },
+        {
+          "id": "sha2",
+          "text": "শিশু",
+          "pronunciation": "shishu",
+          "meaning": "Child",
+          "image": "child.jpg"
+        }
+      ]
+    },
+    {
+      "id": "sha2",
+      "character": "ষ",
+      "name": "ষ",
+      "pronunciation": "sho",
+      "words": [
+        {
+          "id": "sha2_1",
+          "text": "ষ",
+          "pronunciation": "sho",
+          "meaning": "Sha (consonant)",
+          "image": "sha.jpg"
+        }
+      ]
+    },
+    {
+      "id": "sa",
+      "character": "স",
+      "name": "স",
+      "pronunciation": "so",
+      "words": [
+        {
+          "id": "sa1",
+          "text": "সূর্য",
+          "pronunciation": "shurjo",
+          "meaning": "Sun",
+          "image": "sun.jpg"
+        },
+        {
+          "id": "sa2",
+          "text": "সিংহ",
+          "pronunciation": "shingho",
+          "meaning": "Lion",
+          "image": "lion.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ha",
+      "character": "হ",
+      "name": "হ",
+      "pronunciation": "ho",
+      "words": [
+        {
+          "id": "ha1",
+          "text": "হাত",
+          "pronunciation": "hat",
+          "meaning": "Hand",
+          "image": "hand.jpg"
+        },
+        {
+          "id": "ha2",
+          "text": "হৃদয়",
+          "pronunciation": "hridoy",
+          "meaning": "Heart",
+          "image": "heart.jpg"
+        }
+      ]
+    },
+    {
+      "id": "Ra",
+      "character": "ড়",
+      "name": "ড়",
+      "pronunciation": "ড শুন্য র",
+      "words": [
+        {
+          "id": "Ra1",
+          "text": "ষাড়",
+          "pronunciation": "shar",
+          "meaning": "পুরুষ গরু",
+          "image": "power.jpg"
+        }
+      ]
+    },
+    {
+      "id": "RHa",
+      "character": "ঢ়",
+      "name": "ঢ়",
+      "pronunciation": "ঢ শুন্য র",
+      "words": [
+        {
+          "id": "RHa1",
+          "text": "গাঢ়",
+          "pronunciation": "gahar",
+          "meaning": "Dark",
+          "image": "dark.jpg"
+        }
+      ]
+    },
+    {
+      "id": "y",
+      "character": "য়",
+      "name": "য়",
+      "pronunciation": "অন্তস্থ য",
+      "words": [
+        {
+          "id": "y1",
+          "text": "বিজয়ী",
+          "pronunciation": "bijoyi",
+          "meaning": "Victorious",
+          "image": "y.jpg"
+        }
+      ]
+    },
+    {
+      "id": "tta",
+      "character": "ৎ",
+      "name": "ৎ",
+      "pronunciation": "খন্ড ত",
+      "words": [
+        {
+          "id": "tta1",
+          "text": "শরৎ",
+          "pronunciation": "tta",
+          "meaning": "Tta (consonant)",
+          "image": "tta.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ng",
+      "character": "ং",
+      "name": "ং",
+      "pronunciation": "ng",
+      "words": [
+        {
+          "id": "ng1",
+          "text": "ং",
+          "pronunciation": "ng",
+          "meaning": "Ng (nasal sound)",
+          "image": "ng_nasal.jpg"
+        }
+      ]
+    },
+    {
+      "id": "h2",
+      "character": "ঃ",
+      "name": "ঃ",
+      "pronunciation": "বিসর্গ",
+      "words": [
+        {
+          "id": "h2_1",
+          "text": "ঃ",
+          "pronunciation": "h2",
+          "meaning": "Visarga (aspiration mark)",
+          "image": "visarga.jpg"
+        }
+      ]
+    },
+    {
+      "id": "h3",
+      "character": "ঁ",
+      "name": "ঁ",
+      "pronunciation": "চন্দ্র বিন্দু",
+      "words": [
+        {
+          "id": "h3_1",
+          "text": "ঁ",
+          "pronunciation": "h3",
+          "meaning": "Chandrabindu (nasalization mark)",
+          "image": "chandrabindu.jpg"
+        }
+      ]
+    }
+  ]
+}

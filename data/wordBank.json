@@ -1,0 +1,127 @@
+{
+  "english": {
+    "animals": [
+      { "id": "e-a-1", "word": "cat", "emoji": "🐱" },
+      { "id": "e-a-2", "word": "dog", "emoji": "🐶" },
+      { "id": "e-a-3", "word": "elephant", "emoji": "🐘" },
+      { "id": "e-a-4", "word": "lion", "emoji": "🦁" },
+      { "id": "e-a-5", "word": "rabbit", "emoji": "🐰" },
+      { "id": "e-a-6", "word": "bear", "emoji": "🐻" },
+      { "id": "e-a-7", "word": "monkey", "emoji": "🐵" },
+      { "id": "e-a-8", "word": "bird", "emoji": "🐦" },
+      { "id": "e-a-9", "word": "fish", "emoji": "🐠" },
+      { "id": "e-a-10", "word": "butterfly", "emoji": "🦋" }
+    ],
+    "objects": [
+      { "id": "e-o-1", "word": "ball", "emoji": "⚽" },
+      { "id": "e-o-2", "word": "book", "emoji": "📚" },
+      { "id": "e-o-3", "word": "toy", "emoji": "🧸" },
+      { "id": "e-o-4", "word": "balloon", "emoji": "🎈" },
+      { "id": "e-o-5", "word": "star", "emoji": "⭐" },
+      { "id": "e-o-6", "word": "flower", "emoji": "🌸" },
+      { "id": "e-o-7", "word": "car", "emoji": "🚗" },
+      { "id": "e-o-8", "word": "bicycle", "emoji": "🚲" },
+      { "id": "e-o-9", "word": "tree", "emoji": "🌳" },
+      { "id": "e-o-10", "word": "house", "emoji": "🏠" }
+    ],
+    "actions": [
+      { "id": "e-ac-1", "word": "jump", "emoji": "🤸" },
+      { "id": "e-ac-2", "word": "run", "emoji": "🏃" },
+      { "id": "e-ac-3", "word": "play", "emoji": "🎮" },
+      { "id": "e-ac-4", "word": "dance", "emoji": "💃" },
+      { "id": "e-ac-5", "word": "sing", "emoji": "🎤" },
+      { "id": "e-ac-6", "word": "laugh", "emoji": "😄" },
+      { "id": "e-ac-7", "word": "sleep", "emoji": "😴" },
+      { "id": "e-ac-8", "word": "eat", "emoji": "🍽️" },
+      { "id": "e-ac-9", "word": "fly", "emoji": "✈️" },
+      { "id": "e-ac-10", "word": "swim", "emoji": "🏊" }
+    ],
+    "places": [
+      { "id": "e-p-1", "word": "park", "emoji": "🏞️" },
+      { "id": "e-p-2", "word": "school", "emoji": "🏫" },
+      { "id": "e-p-3", "word": "forest", "emoji": "🌲" },
+      { "id": "e-p-4", "word": "beach", "emoji": "🏖️" },
+      { "id": "e-p-5", "word": "garden", "emoji": "🪴" },
+      { "id": "e-p-6", "word": "castle", "emoji": "🏰" },
+      { "id": "e-p-7", "word": "mountain", "emoji": "⛰️" },
+      { "id": "e-p-8", "word": "river", "emoji": "🏞️" },
+      { "id": "e-p-9", "word": "sky", "emoji": "☁️" },
+      { "id": "e-p-10", "word": "zoo", "emoji": "🦁" }
+    ],
+    "feelings": [
+      { "id": "e-f-1", "word": "happy", "emoji": "😊" },
+      { "id": "e-f-2", "word": "excited", "emoji": "🤩" },
+      { "id": "e-f-3", "word": "brave", "emoji": "💪" },
+      { "id": "e-f-4", "word": "curious", "emoji": "🤔" },
+      { "id": "e-f-5", "word": "friendly", "emoji": "🤝" },
+      { "id": "e-f-6", "word": "kind", "emoji": "❤️" },
+      { "id": "e-f-7", "word": "surprised", "emoji": "😮" },
+      { "id": "e-f-8", "word": "proud", "emoji": "🏆" },
+      { "id": "e-f-9", "word": "thankful", "emoji": "🙏" },
+      { "id": "e-f-10", "word": "silly", "emoji": "🤪" }
+    ]
+  },
+  "bangla": {
+    "animals": [
+      { "id": "b-a-1", "word": "বিড়াল", "emoji": "🐱", "pronunciation": "biral" },
+      { "id": "b-a-2", "word": "কুকুর", "emoji": "🐶", "pronunciation": "kukur" },
+      { "id": "b-a-3", "word": "হাতি", "emoji": "🐘", "pronunciation": "hati" },
+      { "id": "b-a-4", "word": "সিংহ", "emoji": "🦁", "pronunciation": "shingho" },
+      { "id": "b-a-5", "word": "খরগোশ", "emoji": "🐰", "pronunciation": "khorgosh" },
+      { "id": "b-a-6", "word": "ভাল্লুক", "emoji": "🐻", "pronunciation": "bhalluk" },
+      { "id": "b-a-7", "word": "বানর", "emoji": "🐵", "pronunciation": "banor" },
+      { "id": "b-a-8", "word": "পাখি", "emoji": "🐦", "pronunciation": "pakhi" },
+      { "id": "b-a-9", "word": "মাছ", "emoji": "🐠", "pronunciation": "mach" },
+      { "id": "b-a-10", "word": "প্রজাপতি", "emoji": "🦋", "pronunciation": "projapoti" }
+    ],
+    "objects": [
+      { "id": "b-o-1", "word": "বল", "emoji": "⚽", "pronunciation": "bol" },
+      { "id": "b-o-2", "word": "বই", "emoji": "📚", "pronunciation": "boi" },
+      { "id": "b-o-3", "word": "খেলনা", "emoji": "🧸", "pronunciation": "khelna" },
+      { "id": "b-o-4", "word": "বেলুন", "emoji": "🎈", "pronunciation": "belun" },
+      { "id": "b-o-5", "word": "তারা", "emoji": "⭐", "pronunciation": "tara" },
+      { "id": "b-o-6", "word": "ফুল", "emoji": "🌸", "pronunciation": "ful" },
+      { "id": "b-o-7", "word": "গাড়ি", "emoji": "🚗", "pronunciation": "gari" },
+      { "id": "b-o-8", "word": "সাইকেল", "emoji": "🚲", "pronunciation": "cycle" },
+      { "id": "b-o-9", "word": "গাছ", "emoji": "🌳", "pronunciation": "gach" },
+      { "id": "b-o-10", "word": "ঘর", "emoji": "🏠", "pronunciation": "ghor" }
+    ],
+    "actions": [
+      { "id": "b-ac-1", "word": "লাফানো", "emoji": "🤸", "pronunciation": "lafano" },
+      { "id": "b-ac-2", "word": "দৌড়ানো", "emoji": "🏃", "pronunciation": "dourano" },
+      { "id": "b-ac-3", "word": "খেলা", "emoji": "🎮", "pronunciation": "khela" },
+      { "id": "b-ac-4", "word": "নাচা", "emoji": "💃", "pronunciation": "nacha" },
+      { "id": "b-ac-5", "word": "গান গাওয়া", "emoji": "🎤", "pronunciation": "gan gaowa" },
+      { "id": "b-ac-6", "word": "হাসা", "emoji": "😄", "pronunciation": "hasha" },
+      { "id": "b-ac-7", "word": "ঘুমানো", "emoji": "😴", "pronunciation": "ghumano" },
+      { "id": "b-ac-8", "word": "খাওয়া", "emoji": "🍽️", "pronunciation": "khaowa" },
+      { "id": "b-ac-9", "word": "উড়া", "emoji": "✈️", "pronunciation": "ura" },
+      { "id": "b-ac-10", "word": "সাঁতার", "emoji": "🏊", "pronunciation": "santar" }
+    ],
+    "places": [
+      { "id": "b-p-1", "word": "পার্ক", "emoji": "🏞️", "pronunciation": "park" },
+      { "id": "b-p-2", "word": "স্কুল", "emoji": "🏫", "pronunciation": "school" },
+      { "id": "b-p-3", "word": "জঙ্গল", "emoji": "🌲", "pronunciation": "jongol" },
+      { "id": "b-p-4", "word": "সমুদ্র সৈকত", "emoji": "🏖️", "pronunciation": "somudro shoikot" },
+      { "id": "b-p-5", "word": "বাগান", "emoji": "🪴", "pronunciation": "bagan" },
+      { "id": "b-p-6", "word": "দুর্গ", "emoji": "🏰", "pronunciation": "durgo" },
+      { "id": "b-p-7", "word": "পাহাড়", "emoji": "⛰️", "pronunciation": "pahar" },
+      { "id": "b-p-8", "word": "নদী", "emoji": "🏞️", "pronunciation": "nodi" },
+      { "id": "b-p-9", "word": "আকাশ", "emoji": "☁️", "pronunciation": "akash" },
+      { "id": "b-p-10", "word": "চিড়িয়াখানা", "emoji": "🦁", "pronunciation": "chiriyakhana" }
+    ],
+    "feelings": [
+      { "id": "b-f-1", "word": "খুশি", "emoji": "😊", "pronunciation": "khushi" },
+      { "id": "b-f-2", "word": "উত্তেজিত", "emoji": "🤩", "pronunciation": "uttejito" },
+      { "id": "b-f-3", "word": "সাহসী", "emoji": "💪", "pronunciation": "shahoshi" },
+      { "id": "b-f-4", "word": "কৌতূহলী", "emoji": "🤔", "pronunciation": "koutuholi" },
+      { "id": "b-f-5", "word": "বন্ধুত্বপূর্ণ", "emoji": "🤝", "pronunciation": "bondhuttopurno" },
+      { "id": "b-f-6", "word": "দয়ালু", "emoji": "❤️", "pronunciation": "doyalu" },
+      { "id": "b-f-7", "word": "অবাক", "emoji": "😮", "pronunciation": "obak" },
+      { "id": "b-f-8", "word": "গর্বিত", "emoji": "🏆", "pronunciation": "gorbito" },
+      { "id": "b-f-9", "word": "কৃতজ্ঞ", "emoji": "🙏", "pronunciation": "kritoggo" },
+      { "id": "b-f-10", "word": "মজার", "emoji": "🤪", "pronunciation": "mojar" }
+    ]
+  }
+}
+
