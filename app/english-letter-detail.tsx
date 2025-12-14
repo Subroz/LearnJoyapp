@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button';
 import englishAlphabets from '@/data/englishAlphabets.json';
 import { Ionicons } from '@expo/vector-icons';
 import { speechService } from '@/services/speech';
+import ScreenBackground from '@/components/ui/ScreenBackground';
 
 interface WordItem {
   id: string;
@@ -28,12 +29,16 @@ export default function EnglishLetterDetailPage() {
   }, [params.letterId]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScreenBackground section="english">
+      <SafeAreaView style={styles.container}>
       <Header
         title={`Letter: ${params.character}`}
         subtitle={`${params.letterType ? params.letterType.toUpperCase() : ''} • High-frequency words`}
+        variant="transparent"
         showBackButton
         onBackPress={() => router.back()}
+        titleStyle={{ color: theme.colors.white, fontSize: theme.typography.h4 }}
+        subtitleStyle={{ color: theme.colors.white, opacity: 0.9 }}
       />
 
       <ScrollView style={styles.content} contentContainerStyle={{ paddingBottom: theme.spacing.xl }}>
@@ -69,12 +74,13 @@ export default function EnglishLetterDetailPage() {
           <Text style={styles.emptyText}>No example words available for this letter yet.</Text>
         )}
       </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: theme.colors.background },
+  container: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: theme.spacing.lg },
   letterCard: { marginTop: theme.spacing.lg },
   letterRow: { flexDirection: 'row', alignItems: 'center' },

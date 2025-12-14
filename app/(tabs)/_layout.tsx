@@ -13,13 +13,11 @@ export default function TabLayout() {
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: theme.colors.textSecondary,
         tabBarStyle: {
-          backgroundColor: theme.colors.background,
-          borderTopColor: theme.colors.border.light,
-          borderTopWidth: 1,
-          paddingBottom: 8,
-          paddingTop: 8,
-          height: 80,
+          // Hide the bottom navigation bar to match the full-screen home design
+          display: 'none',
+          height: 0,
         },
+        tabBarShowLabel: false,
         tabBarLabelStyle: {
           fontSize: theme.typography.caption,
           fontWeight: theme.typography.medium,

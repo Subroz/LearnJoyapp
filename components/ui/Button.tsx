@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  TouchableOpacity,
+  Pressable,
   Text,
   StyleSheet,
   ViewStyle,
@@ -187,42 +187,48 @@ const Button: React.FC<ButtonProps> = ({
 
   if (variant === 'primary' || variant === 'secondary' || variant === 'accent') {
     return (
-      <TouchableOpacity
+      <Pressable
         onPress={handlePress}
         disabled={disabled || loading}
-        activeOpacity={0.8}
         // Ensure layout width/constraints from parent are respected for gradient variants
         style={style as any}
       >
-        <LinearGradient
-          colors={
-            variant === 'primary' 
-              ? [theme.colors.primary, theme.colors.primaryDark]
-              : variant === 'secondary'
-              ? [theme.colors.secondary, theme.colors.secondaryDark]
-              : [theme.colors.accent, theme.colors.accentDark]
-          }
-          // Visual/padding styles live on the gradient container
-          style={getButtonStyles() as any}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-        >
-          {renderContent()}
-        </LinearGradient>
-      </TouchableOpacity>
+        {({ pressed }) => (
+          <LinearGradient
+            colors={
+              variant === 'primary'
+                ? [theme.colors.primary, theme.colors.primaryDark]
+                : variant === 'secondary'
+                ? [theme.colors.secondary, theme.colors.secondaryDark]
+                : [theme.colors.accent, theme.colors.accentDark]
+            }
+            // Visual/padding styles live on the gradient container
+            style={[
+              getButtonStyles() as any,
+              pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
+            ]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+          >
+            {renderContent()}
+          </LinearGradient>
+        )}
+      </Pressable>
     );
   }
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={handlePress}
       disabled={disabled || loading}
-      activeOpacity={0.8}
-      // Merge parent-provided style with computed button styles for non-gradient variants
-      style={[getButtonStyles(), style] as any}
+      style={({ pressed }) => [
+        getButtonStyles() as any,
+        style,
+        pressed && { opacity: 0.85, transform: [{ scale: 0.98 }] },
+      ]}
     >
       {renderContent()}
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

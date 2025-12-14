@@ -1,0 +1,207 @@
+{
+    "name": "KidLearn",
+    "version": "2.0.0",
+    "animatedBackground": {
+      "gradient": {
+        "type": "linear-gradient",
+        "angle": "135deg",
+        "stops": [
+          { "position": "0%", "color": "hsl(210, 100%, 95%)" },
+          { "position": "50%", "color": "hsl(280, 80%, 95%)" },
+          { "position": "100%", "color": "hsl(340, 80%, 95%)" }
+        ]
+      },
+      "floatingShapes": {
+        "shapes": ["circle", "star", "triangle", "square"],
+        "sizes": {
+          "sm": { "height": "2rem", "width": "2rem" },
+          "md": { "height": "4rem", "width": "4rem" },
+          "lg": { "height": "6rem", "width": "6rem" }
+        },
+        "colors": [
+          "hsl(210, 100%, 65%)",
+          "hsl(340, 80%, 65%)",
+          "hsl(160, 70%, 50%)",
+          "hsl(280, 70%, 65%)",
+          "hsl(30, 100%, 60%)",
+          "hsl(45, 100%, 60%)"
+        ],
+        "opacity": 0.6,
+        "blur": "1px",
+        "animation": {
+          "name": "float",
+          "keyframes": {
+            "0%, 100%": { "transform": "translateY(0) rotate(0deg)" },
+            "50%": { "transform": "translateY(-20px) rotate(5deg)" }
+          },
+          "duration": "6s",
+          "timingFunction": "ease-in-out",
+          "iterationCount": "infinite",
+          "delays": ["0s", "-2s", "-4s"]
+        },
+        "positions": [
+          { "top": "10%", "left": "5%" },
+          { "top": "20%", "right": "10%" },
+          { "top": "60%", "left": "8%" },
+          { "top": "70%", "right": "5%" },
+          { "top": "40%", "left": "3%" },
+          { "top": "85%", "right": "15%" },
+          { "top": "15%", "left": "80%" },
+          { "top": "50%", "right": "3%" }
+        ]
+      },
+      "svgPaths": {
+        "star": "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z",
+        "triangle": "M12 3L2 21h20L12 3z"
+      }
+    },
+    "fonts": {
+      "primary": {
+        "family": "Nunito",
+        "weights": [400, 600, 700, 800],
+        "url": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      }
+    },
+    "colors": {
+      "light": {
+        "background": "hsl(210, 100%, 98%)",
+        "foreground": "hsl(240, 20%, 20%)",
+        "card": "hsl(0, 0%, 100%)",
+        "cardForeground": "hsl(240, 20%, 20%)",
+        "popover": "hsl(0, 0%, 100%)",
+        "popoverForeground": "hsl(240, 20%, 20%)",
+        "primary": "hsl(210, 100%, 60%)",
+        "primaryForeground": "hsl(0, 0%, 100%)",
+        "secondary": "hsl(340, 80%, 65%)",
+        "secondaryForeground": "hsl(0, 0%, 100%)",
+        "muted": "hsl(210, 30%, 95%)",
+        "mutedForeground": "hsl(215, 16%, 47%)",
+        "accent": "hsl(45, 100%, 60%)",
+        "accentForeground": "hsl(240, 20%, 20%)",
+        "destructive": "hsl(0, 84%, 60%)",
+        "destructiveForeground": "hsl(0, 0%, 100%)",
+        "border": "hsl(210, 30%, 90%)",
+        "input": "hsl(210, 30%, 90%)",
+        "ring": "hsl(210, 100%, 60%)"
+      },
+      "dark": {
+        "background": "hsl(240, 20%, 10%)",
+        "foreground": "hsl(210, 40%, 98%)",
+        "card": "hsl(240, 20%, 15%)",
+        "cardForeground": "hsl(210, 40%, 98%)",
+        "popover": "hsl(240, 20%, 15%)",
+        "popoverForeground": "hsl(210, 40%, 98%)",
+        "primary": "hsl(210, 100%, 60%)",
+        "primaryForeground": "hsl(0, 0%, 100%)",
+        "secondary": "hsl(340, 80%, 65%)",
+        "secondaryForeground": "hsl(0, 0%, 100%)",
+        "muted": "hsl(240, 20%, 20%)",
+        "mutedForeground": "hsl(215, 20%, 65%)",
+        "accent": "hsl(45, 100%, 60%)",
+        "accentForeground": "hsl(240, 20%, 10%)",
+        "destructive": "hsl(0, 63%, 31%)",
+        "destructiveForeground": "hsl(210, 40%, 98%)",
+        "border": "hsl(240, 20%, 20%)",
+        "input": "hsl(240, 20%, 20%)",
+        "ring": "hsl(210, 100%, 60%)"
+      },
+      "learningCards": {
+        "alphabetEnglish": "hsl(210, 100%, 65%)",
+        "alphabetBangla": "hsl(340, 80%, 65%)",
+        "math": "hsl(160, 70%, 50%)",
+        "story": "hsl(280, 70%, 65%)",
+        "draw": "hsl(30, 100%, 60%)"
+      }
+    },
+    "gradients": {
+      "background": "linear-gradient(135deg, hsl(210, 100%, 95%) 0%, hsl(280, 80%, 95%) 50%, hsl(340, 80%, 95%) 100%)",
+      "cardHover": "linear-gradient(180deg, transparent 0%, hsl(0, 0%, 0%, 0.05) 100%)"
+    },
+    "shadows": {
+      "card": "0 8px 30px -10px hsl(240, 20%, 20%, 0.15)",
+      "cardHover": "0 20px 40px -15px hsl(240, 20%, 20%, 0.25)"
+    },
+    "borderRadius": {
+      "sm": "0.5rem",
+      "md": "0.875rem",
+      "lg": "1rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "2rem"
+    },
+    "animations": {
+      "float": {
+        "keyframes": {
+          "0%, 100%": { "transform": "translateY(0) rotate(0deg)" },
+          "50%": { "transform": "translateY(-20px) rotate(5deg)" }
+        },
+        "duration": "6s",
+        "timingFunction": "ease-in-out",
+        "iterationCount": "infinite"
+      },
+      "bounceIn": {
+        "keyframes": {
+          "0%": { "transform": "scale(0.3)", "opacity": "0" },
+          "50%": { "transform": "scale(1.05)" },
+          "70%": { "transform": "scale(0.9)" },
+          "100%": { "transform": "scale(1)", "opacity": "1" }
+        },
+        "duration": "0.6s",
+        "timingFunction": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      "wiggle": {
+        "keyframes": {
+          "0%, 100%": { "transform": "rotate(-3deg)" },
+          "50%": { "transform": "rotate(3deg)" }
+        },
+        "duration": "0.5s",
+        "timingFunction": "ease-in-out"
+      },
+      "pulseSoft": {
+        "keyframes": {
+          "0%, 100%": { "opacity": "1" },
+          "50%": { "opacity": "0.8" }
+        },
+        "duration": "2s",
+        "timingFunction": "ease-in-out",
+        "iterationCount": "infinite"
+      }
+    },
+    "learningModules": [
+      {
+        "id": "alphabet-en",
+        "title": "English ABC",
+        "subtitle": "Learn A to Z",
+        "icon": "Type",
+        "colorKey": "alphabetEnglish"
+      },
+      {
+        "id": "alphabet-bn",
+        "title": "বাংলা বর্ণমালা",
+        "subtitle": "অ থেকে ঔ শিখি",
+        "icon": "Languages",
+        "colorKey": "alphabetBangla"
+      },
+      {
+        "id": "math",
+        "title": "Math Fun",
+        "subtitle": "Numbers & Counting",
+        "icon": "Calculator",
+        "colorKey": "math"
+      },
+      {
+        "id": "story",
+        "title": "Story Time",
+        "subtitle": "Read & Listen",
+        "icon": "BookOpen",
+        "colorKey": "story"
+      },
+      {
+        "id": "draw",
+        "title": "Let's Draw",
+        "subtitle": "Colors & Shapes",
+        "icon": "Palette",
+        "colorKey": "draw"
+      }
+    ]
+  }

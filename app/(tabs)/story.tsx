@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  Alert,
-} from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/ui/Header';
@@ -18,9 +12,11 @@ import { geminiService, StoryResponse } from '@/services/gemini';
 import wordBank from '@/data/wordBank.json';
 import { Ionicons } from '@expo/vector-icons';
 import { triggerHaptic } from '@/utils/haptics';
+import ScreenBackground from '@/components/ui/ScreenBackground';
 
 export default function StoryScreen() {
   const { t, language } = useLanguage();
+  const router = useRouter();
   
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [generatedStory, setGeneratedStory] = useState<StoryResponse | null>(null);
@@ -100,7 +96,8 @@ export default function StoryScreen() {
 
   if (showStory && generatedStory) {
     return (
-      <SafeAreaView style={styles.container}>
+      <ScreenBackground section="story">
+        <SafeAreaView style={styles.container}>
         <StoryViewer
           title={generatedStory.title}
           content={generatedStory.content}
@@ -111,24 +108,25 @@ export default function StoryScreen() {
           onClose={handleCloseStory}
           onSave={handleSaveStory}
         />
-      </SafeAreaView>
+        </SafeAreaView>
+      </ScreenBackground>
     );
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={[theme.colors.primary, theme.colors.primaryLight]}
-        style={styles.headerGradient}
-      >
+    <ScreenBackground section="story">
+      <SafeAreaView style={styles.container}>
+      <View style={styles.headerGradient}>
         <Header
           title={t('story.title')}
           subtitle="Create magical stories with words"
           variant="transparent"
+          showBackButton
+          onBackPress={() => router.back()}
           titleStyle={styles.headerTitle}
           subtitleStyle={styles.headerSubtitle}
         />
-      </LinearGradient>
+      </View>
 
       <View style={styles.content}>
         {/* Instructions */}
@@ -183,17 +181,19 @@ export default function StoryScreen() {
           />
         </View>
       </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: 'transparent',
   },
   headerGradient: {
     paddingTop: 20,
+    backgroundColor: 'transparent',
   },
   headerTitle: {
     color: theme.colors.white,

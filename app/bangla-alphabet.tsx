@@ -1,7 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,8 +9,8 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { triggerHaptic } from '@/utils/haptics';
 import banglaAlphabets from '@/data/banglaAlphabets.json';
-import { sectionThemes } from '@/constants/sectionThemes';
 import { Ionicons } from '@expo/vector-icons';
+import ScreenBackground from '@/components/ui/ScreenBackground';
 
 interface BanglaLetter {
   id: string;
@@ -79,18 +78,19 @@ export default function BanglaAlphabetScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient colors={sectionThemes[category].gradient} style={styles.headerGradient}>
+    <ScreenBackground section="bangla">
+      <SafeAreaView style={styles.container}>
+      <View style={styles.headerGradient}>
         <Header
           title="বাংলা বর্ণমালা"
           subtitle="Bangla Alphabet"
+          variant="transparent"
           showBackButton
           onBackPress={() => router.back()}
-          variant="transparent"
           titleStyle={styles.headerTitle}
           subtitleStyle={styles.headerSubtitle}
         />
-      </LinearGradient>
+      </View>
 
       <View style={styles.content}>
         <View style={styles.categoryToggle}>
@@ -104,7 +104,11 @@ export default function BanglaAlphabetScreen() {
             }}
             variant={category === 'swaraborna' ? 'primary' : 'outline'}
             size="medium"
-            style={styles.categoryButton}
+            style={[
+              styles.categoryButton,
+              category !== 'swaraborna' && styles.categoryButtonInactive,
+            ]}
+            textStyle={category !== 'swaraborna' ? styles.categoryButtonInactiveText : undefined}
           />
           <Button
             title="ব্যাঞ্জনবর্ণ"
@@ -116,7 +120,11 @@ export default function BanglaAlphabetScreen() {
             }}
             variant={category === 'banjonborno' ? 'secondary' : 'outline'}
             size="medium"
-            style={styles.categoryButton}
+            style={[
+              styles.categoryButton,
+              category !== 'banjonborno' && styles.categoryButtonInactive,
+            ]}
+            textStyle={category !== 'banjonborno' ? styles.categoryButtonInactiveText : undefined}
           />
         </View>
 
@@ -184,18 +192,26 @@ export default function BanglaAlphabetScreen() {
           />
         </View>
       </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: theme.colors.background },
-  headerGradient: { paddingTop: 20 },
-  headerTitle: { color: theme.colors.white, fontSize: theme.typography.h4 },
-  headerSubtitle: { color: theme.colors.white, opacity: 0.9 },
+  container: { flex: 1, backgroundColor: 'transparent' },
+  headerGradient: { paddingTop: 20, backgroundColor: 'transparent' },
+  headerTitle: { color: theme.colors.white, fontSize: theme.typography.h2 },
+  headerSubtitle: { color: theme.colors.white, fontSize: theme.typography.h4,   opacity: 0.9 },
   content: { flex: 1, paddingHorizontal: theme.spacing.lg },
   categoryToggle: { marginVertical: theme.spacing.md, flexDirection: 'row', justifyContent: 'space-between' },
   categoryButton: { width: 150 },
+  categoryButtonInactive: {
+    borderColor: 'rgba(255,255,255,0.6)',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  categoryButtonInactiveText: {
+    color: '#FFFFFF',
+  },
   swipeCard: { justifyContent: 'center', alignItems: 'center', alignSelf: 'center', paddingVertical: 0 },
   visibleCard: {
     backgroundColor: theme.colors.backgroundCard || '#FFFFFF',
@@ -219,10 +235,10 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     marginTop: 0,
   },
-  letterName: { fontSize: theme.typography.caption, fontWeight: theme.typography.medium, color: theme.colors.textSecondary },
+  letterName: { fontSize: theme.typography.h4, fontWeight: theme.typography.medium, color: theme.colors.white },
   letterPronunciation: { fontSize: theme.typography.small, color: theme.colors.textTertiary, fontStyle: 'italic' },
   controlsRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: theme.spacing.md },
-  indexText: { color: theme.colors.textSecondary, fontWeight: theme.typography.medium },
+  indexText: { fontSize: theme.typography.h4, color: theme.colors.white, fontWeight: theme.typography.medium },
   practiceSection: { marginVertical: theme.spacing.xl, paddingBottom: theme.spacing.xl },
   practiceButton: { width: '100%' },
   navButton: { minWidth: 120 },

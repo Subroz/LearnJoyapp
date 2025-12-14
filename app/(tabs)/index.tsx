@@ -1,299 +1,467 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+// MaskedView is used for gradient text; require used to avoid TS type issues if typings are missing
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const MaskedView = require('@react-native-masked-view/masked-view').default;
 import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Header from '@/components/ui/Header';
 import Card from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
-import { AnimatedIcon, LetterIcon, MathIcon, DrawIcon, StoryIcon, VoiceIcon } from '@/components/ui/AnimatedIcon';
+// Design-driven background configuration
+import designConfig from '@/Design/design-config.json';
+
+type FloatingShapeSizeKey = 'sm' | 'md' | 'lg';
+
+type FloatingShapePosition = {
+  top?: string;
+  left?: string;
+  right?: string;
+};
+
+interface FloatingShapeProps extends FloatingShapePosition {
+  index: number;
+  color: string;
+  sizeKey: FloatingShapeSizeKey;
+  shapeType: string;
+  opacity: number;
+  durationMs: number;
+  cartoonEmoji: string;
+}
+
+const sizeMap: Record<FloatingShapeSizeKey, { width: number; height: number }> = {
+  sm: { width: 32, height: 32 },
+  md: { width: 56, height: 56 },
+  lg: { width: 80, height: 80 },
+};
+
+const CARTOON_EMOJIS = ['🐻', '🐰', '🐼', '🦊', '🐣', '⭐', '🎈', '🌙'];
+
+const FloatingShape: React.FC<FloatingShapeProps> = ({
+  index,
+  color,
+  sizeKey,
+  shapeType,
+  opacity,
+  durationMs,
+  top,
+  left,
+  right,
+  cartoonEmoji,
+}) => {
+  const floatAnim = React.useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const halfDuration = durationMs / 2;
+
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(floatAnim, {
+          toValue: 1,
+          duration: halfDuration,
+          delay: index * 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(floatAnim, {
+          toValue: 0,
+          duration: halfDuration,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, [floatAnim, durationMs, index]);
+
+  const { width, height } = sizeMap[sizeKey];
+
+  const translateY = floatAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -20],
+  });
+
+  const rotate = floatAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '5deg'],
+  });
+
+  const shapeSpecificStyle =
+    shapeType === 'circle'
+      ? styles.shapeCircle
+      : shapeType === 'triangle'
+      ? styles.shapeTriangle
+      : styles.shapeRounded;
+
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        styles.shapeBase,
+        shapeSpecificStyle,
+        {
+          top: top as any,
+          left: left as any,
+          right: right as any,
+          width,
+          height,
+          backgroundColor: color,
+          opacity,
+          transform: [{ translateY }, { rotate }],
+        },
+      ]}
+    >
+      <View style={styles.cartoonBubble}>
+        <Text style={styles.cartoonEmoji}>{cartoonEmoji}</Text>
+      </View>
+    </Animated.View>
+  );
+};
 
 export default function LearnScreen() {
   const { t, language, setLanguage } = useLanguage();
   const router = useRouter();
 
-  const learningModules = [
+  const animatedBackground = (designConfig as any).animatedBackground;
+
+  const gradientColors: string[] = useMemo(() => {
+    const stops = animatedBackground?.gradient?.stops;
+    if (Array.isArray(stops) && stops.length > 0) {
+      return stops.map((stop: any) => stop.color);
+    }
+    return ['#E6F3FF', '#F3E6FF', '#FFE6F0'];
+  }, [animatedBackground]);
+
+  const floatingShapesConfig = animatedBackground?.floatingShapes;
+  const floatingShapesDurationMs = 6000;
+
+  const headingGradientColors = useMemo(() => {
+    // Prefer strong blue → pink from design-config learningCards, fallback to animated gradient
+    const learningCards = (designConfig as any)?.colors?.learningCards;
+    if (learningCards?.alphabetEnglish && learningCards?.alphabetBangla) {
+      return [
+        learningCards.alphabetEnglish as string,
+        learningCards.alphabetBangla as string,
+      ];
+    }
+    if (gradientColors.length >= 2) {
+      return [gradientColors[0], gradientColors[gradientColors.length - 1]];
+    }
+    return ['#4BA3FF', '#FF6B9A'];
+  }, [gradientColors]);
+
+  const modules = [
     {
-      id: 'bangla',
+      id: 'englishAlphabet',
+      title: t('alphabet.english'),
+      iconLabel: 'ABC',
+      gradient: ['#4BA3FF', '#8FD3FF'] as const,
+      onPress: () => router.push('/english-alphabet'),
+    },
+    {
+      id: 'banglaAlphabet',
       title: t('alphabet.bangla'),
-      subtitle: t('alphabet.title'),
-      icon: 'text',
-      color: theme.colors.primary,
+      iconLabel: 'অ/ক',
+      gradient: ['#FF6B9A', '#FF9BCD'] as const,
       onPress: () => router.push('/bangla-alphabet'),
     },
     {
-      id: 'english',
-      title: t('alphabet.english'),
-      subtitle: t('alphabet.title'),
-      icon: 'text',
-      color: theme.colors.primaryLight,
-      onPress: () => router.push('/english-alphabet'),
-    },
-  ];
-
-  const quickActions = [
-    {
       id: 'math',
       title: t('nav.math'),
-      icon: 'calculator',
-      color: theme.colors.secondary,
-      gradient: [theme.colors.secondary, theme.colors.secondaryLight] as const,
+      iconName: 'grid',
+      gradient: ['#34C759', '#66D98F'] as const,
       onPress: () => router.push('/math'),
-    },
-    {
-      id: 'draw',
-      title: t('nav.draw'),
-      icon: 'create',
-      color: theme.colors.accent,
-      gradient: [theme.colors.accent, theme.colors.accentLight] as const,
-      onPress: () => router.push('/draw'),
     },
     {
       id: 'story',
       title: t('nav.story'),
-      icon: 'library',
-      color: theme.colors.primary,
-      gradient: [theme.colors.primary, theme.colors.primaryLight] as const,
+      iconName: 'book',
+      gradient: ['#A855F7', '#C084FC'] as const,
       onPress: () => router.push('/story'),
+    },
+    {
+      id: 'draw',
+      title: t('nav.draw'),
+      iconName: 'color-palette',
+      gradient: ['#FF9500', '#FFC266'] as const,
+      onPress: () => router.push('/draw'),
     },
     {
       id: 'speak',
       title: t('nav.speak'),
-      icon: 'mic',
-      color: theme.colors.warning,
-      gradient: [theme.colors.warning, '#FFB347'] as const,
+      iconName: 'mic',
+      gradient: ['#0EA5E9', '#38BDF8'] as const,
       onPress: () => router.push('/speak'),
     },
   ];
 
-  const renderAnimatedIcon = (iconName: string, color: string) => {
-    switch (iconName) {
-      case 'text':
-        return <LetterIcon color={color} size={32} animation="pulse" />;
-      case 'calculator':
-        return <MathIcon color={color} size={32} animation="rotate" />;
-      case 'create':
-        return <DrawIcon color={color} size={32} animation="pulse" />;
-      case 'library':
-        return <StoryIcon color={color} size={32} animation="wiggle" />;
-      case 'mic':
-        return <VoiceIcon color={color} size={32} animation="pulse" />;
-      default:
-        return <Ionicons name={iconName as any} size={32} color={color} />;
-    }
-  };
-
-  const renderModuleVisual = (moduleId: string, color: string) => {
-    if (moduleId === 'bangla') {
-      return <Text style={[styles.sampleLetters, { color }]}>অ / ক</Text>;
-    }
-    if (moduleId === 'english') {
-      return <Text style={[styles.sampleLetters, { color }]}>Aa</Text>;
-    }
-    return renderAnimatedIcon('text', color);
-  };
-
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={[theme.colors.primary, theme.colors.primaryLight]}
-        style={styles.headerGradient}
-      >
-        <Header
-          title={t('alphabet.title')}
-          subtitle={`${t('alphabet.bangla')} & ${t('alphabet.english')}`}
-          variant="transparent"
-          titleStyle={styles.headerTitle}
-          subtitleStyle={styles.headerSubtitle}
-        />
-      </LinearGradient>
+    <LinearGradient
+      colors={gradientColors as unknown as readonly [string, string, ...string[]]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={styles.background}
+    >
+      {/* Animated decorative shapes from design-config */}
+      {floatingShapesConfig &&
+        Array.isArray(floatingShapesConfig.positions) &&
+        (() => {
+          const basePositions: any[] = floatingShapesConfig.positions;
+          // Add a couple of extra virtual positions for more playful shapes
+          const extraPositions: any[] = [
+            { top: '25%', left: '45%' },
+            { top: '75%', right: '40%' },
+          ];
+          const allPositions = [...basePositions, ...extraPositions];
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Language Toggle */}
-        <View style={styles.languageToggleContainer}>
-          <Button
-            title={t('alphabet.bangla')}
-            onPress={() => setLanguage('bangla')}
-            variant={language === 'bangla' ? 'primary' : 'outline'}
-            size="small"
-            style={styles.languageButton}
-          />
-          <Button
-            title={t('alphabet.english')}
-            onPress={() => setLanguage('english')}
-            variant={language === 'english' ? 'primary' : 'outline'}
-            size="small"
-            style={styles.languageButton}
-          />
-        </View>
+          const sizes = floatingShapesConfig.sizes || {};
+          const sizeKeys = Object.keys(sizes) as FloatingShapeSizeKey[];
+          const colors: string[] = floatingShapesConfig.colors || [];
+          const shapes: string[] = floatingShapesConfig.shapes || ['circle'];
+          const opacity =
+            typeof floatingShapesConfig.opacity === 'number'
+              ? floatingShapesConfig.opacity
+              : 0.6;
+          return allPositions.map((pos: any, index: number) => {
+            const sizeKey: FloatingShapeSizeKey =
+              sizeKeys[index % sizeKeys.length] || 'md';
 
-        {/* Learning Modules */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('alphabet.title')}</Text>
-          <View style={styles.modulesGrid}>
-            {learningModules.map((module) => (
-              <Card
-                key={module.id}
-                variant="elevated"
-                padding="large"
-                borderRadius="large"
-                onPress={module.onPress}
-                style={[styles.moduleCard, styles.visibleCard]}
-              >
-                <View style={styles.moduleContent}>
-                  {renderModuleVisual(module.id, module.color)}
-                  <Text style={styles.moduleTitle}>{module.title}</Text>
-                  <Text style={styles.moduleSubtitle}>{module.subtitle}</Text>
-                </View>
-              </Card>
-            ))}
-          </View>
-        </View>
+            const color =
+              colors.length > 0
+                ? colors[index % colors.length]
+                : 'rgba(255,255,255,0.6)';
 
-        {/* Quick Actions */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>
-            {language === 'bangla' ? 'দ্রুত অ্যাক্সেস' : 'Quick Actions'}
-          </Text>
-          <View style={styles.quickActionsGrid}>
-            {quickActions.map((action) => (
+            const shapeType = shapes[index % shapes.length];
+
+            const cartoonEmoji = CARTOON_EMOJIS[index % CARTOON_EMOJIS.length];
+
+            return (
+              <FloatingShape
+                key={index}
+                index={index}
+                color={color}
+                sizeKey={sizeKey}
+                shapeType={shapeType}
+                opacity={opacity}
+                durationMs={floatingShapesDurationMs}
+                cartoonEmoji={cartoonEmoji}
+                top={pos.top}
+                left={pos.left}
+                right={pos.right}
+              />
+            );
+          });
+        })()}
+
+      <SafeAreaView style={styles.safeArea}>
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}
+        >
+          {/* App Title with gradient text */}
+          <MaskedView
+            style={styles.appTitleMask}
+            maskElement={
+              <View style={styles.appTitleMaskInner}>
+                <Text style={styles.appTitle}>KidLearn</Text>
+              </View>
+            }
+          >
+            <LinearGradient
+              colors={headingGradientColors as unknown as readonly [string, string]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+            >
+              <Text style={[styles.appTitle, styles.appTitleGradientFill]}>KidLearn</Text>
+            </LinearGradient>
+          </MaskedView>
+
+          {/* Language toggle pill */}
+          <View style={styles.languageToggleWrapper}>
+            <View style={styles.languageToggle}>
               <TouchableOpacity
-                key={action.id}
-                onPress={action.onPress}
-                activeOpacity={0.8}
-                style={styles.quickActionButton}
+                activeOpacity={0.9}
+                onPress={() => setLanguage('bangla')}
+                style={[
+                  styles.languageOption,
+                  language === 'bangla' && styles.languageOptionActive,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.languageOptionText,
+                    language === 'bangla' && styles.languageOptionTextActive,
+                  ]}
+                >
+                  {t('alphabet.bangla')}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.9}
+                onPress={() => setLanguage('english')}
+                style={[
+                  styles.languageOption,
+                  language === 'english' && styles.languageOptionActive,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.languageOptionText,
+                    language === 'english' && styles.languageOptionTextActive,
+                  ]}
+                >
+                  {t('alphabet.english')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {/* Main learning modules grid */}
+          <View style={styles.modulesGrid}>
+            {modules.map((module) => (
+              <TouchableOpacity
+                key={module.id}
+                activeOpacity={0.9}
+                onPress={module.onPress}
+                style={styles.moduleWrapper}
               >
                 <LinearGradient
-                  colors={action.gradient}
-                  style={styles.quickActionGradient}
+                  colors={module.gradient}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
+                  style={styles.moduleCard}
                 >
-                  <View style={styles.quickActionContent}>
-                    <View style={styles.quickActionIconContainer}>
-                      <Ionicons name={action.icon as any} size={36} color={theme.colors.white} />
+                  <View style={styles.moduleContent}>
+                    <View style={styles.moduleIconContainer}>
+                      {'iconLabel' in module && module.iconLabel ? (
+                        <Text style={styles.moduleIconLabel}>{module.iconLabel}</Text>
+                      ) : (
+                        <Ionicons
+                          name={(module as any).iconName}
+                          size={28}
+                          color={theme.colors.white}
+                        />
+                      )}
                     </View>
-                    <Text style={styles.quickActionTitle}>{action.title}</Text>
+                    <Text style={styles.moduleTitle}>{module.title}</Text>
                   </View>
                 </LinearGradient>
               </TouchableOpacity>
             ))}
           </View>
-        </View>
 
-        {/* Progress Summary */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>
-            {language === 'bangla' ? 'আজকের অগ্রগতি' : "Today's Progress"}
-          </Text>
-          <Card variant="gradient" gradientColors={[theme.colors.secondary, theme.colors.secondaryLight]} padding="large">
-            <View style={styles.progressContent}>
-              <Ionicons name="trophy" size={24} color={theme.colors.white} />
-              <Text style={styles.progressText}>
-                {language === 'bangla' ? 'আজ ভালো শিখেছ!' : 'Great job learning today!'}
-              </Text>
-              <Text style={styles.progressSubtext}>
-                {language === 'bangla' ? 'চালিয়ে যাও!' : 'Keep up the excellent work'}
-              </Text>
-            </View>
-          </Card>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+          {/* Progress Summary */}
+          <View style={styles.progressSection}>
+            <Text style={styles.sectionTitle}>
+              {language === 'bangla' ? 'আজকের অগ্রগতি' : "Today's Progress"}
+            </Text>
+            <Card
+              variant="gradient"
+              gradientColors={['#FF6B9A', '#FF9BCD']}
+              padding="large"
+              borderRadius="large"
+              style={styles.progressCard}
+            >
+              <View style={styles.progressContent}>
+                <Ionicons name="trophy" size={24} color={theme.colors.white} />
+                <Text style={styles.progressText}>
+                  {language === 'bangla' ? 'আজ ভালো শিখেছ!' : 'Great job learning today!'}
+                </Text>
+                <Text style={styles.progressSubtext}>
+                  {language === 'bangla' ? 'চালিয়ে যাও!' : 'Keep up the excellent work'}
+                </Text>
+              </View>
+            </Card>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    backgroundColor: theme.colors.background,
   },
-  headerGradient: {
-    paddingTop: 20,
+  safeArea: {
+    flex: 1,
   },
-  headerTitle: {
-    color: theme.colors.white,
-    fontSize: theme.typography.h3,
-  },
-  headerSubtitle: {
-    color: theme.colors.white,
-    opacity: 0.9,
+  scroll: {
+    flex: 1,
   },
   content: {
-    flex: 1,
     paddingHorizontal: theme.spacing.lg,
+    paddingBottom: theme.spacing.xxl,
   },
-  languageToggleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: theme.spacing.lg,
-    gap: theme.spacing.sm,
+  appTitleMask: {
+    marginTop: theme.spacing.lg,
+    alignSelf: 'center',
   },
-  languageButton: {
-    flex: 1,
-    maxWidth: 120,
-  },
-  section: {
-    marginBottom: theme.spacing.xl,
-  },
-  sectionTitle: {
-    fontSize: theme.typography.h5,
-    fontWeight: theme.typography.bold,
-    color: theme.colors.textPrimary,
-    marginBottom: theme.spacing.md,
-  },
-  modulesGrid: {
-    gap: theme.spacing.md,
-  },
-  moduleCard: {
-    minHeight: 100,
-  },
-
-  visibleCard: {
-    backgroundColor: theme.colors.backgroundCard || '#FFFFFF',
-    borderWidth: 1.5,
-    borderColor: theme.colors.border.light,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.12,
-    shadowRadius: 8,
-  },
-  moduleContent: {
+  appTitleMaskInner: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  moduleTitle: {
-    fontSize: theme.typography.h6,
+  appTitle: {
+    fontSize: 38,
     fontWeight: theme.typography.bold,
-    color: theme.colors.textPrimary,
-    marginTop: theme.spacing.sm,
+    color: 'hsl(210, 75.70%, 50.00%)',
+    textAlign: 'center',
   },
-  moduleSubtitle: {
-    fontSize: theme.typography.caption,
+  appTitleGradientFill: {
+    paddingHorizontal: theme.spacing.lg,
+    color: 'hsla(244, 45.80%, 58.00%, 0.62)',
+    backgroundColor: 'transparent',
+  },
+  languageToggleWrapper: {
+    marginTop: theme.spacing.lg,
+    alignItems: 'center',
+  },
+  languageToggle: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    borderRadius: theme.borderRadius.round,
+    padding: 4,
+    ...theme.shadows.sm,
+  },
+  languageOption: {
+    flex: 1,
+    borderRadius: theme.borderRadius.round,
+    paddingVertical: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.lg,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  languageOptionActive: {
+    backgroundColor: theme.colors.primary,
+  },
+  languageOptionText: {
+    fontSize: theme.typography.body,
     color: theme.colors.textSecondary,
-    marginTop: theme.spacing.xs,
+    fontWeight: theme.typography.medium as any,
   },
-  quickActionsGrid: {
+  languageOptionTextActive: {
+    color: theme.colors.white,
+    fontWeight: theme.typography.bold as any,
+  },
+  modulesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: theme.spacing.lg,
     justifyContent: 'space-between',
+    marginTop: theme.spacing.xl,
+    rowGap: theme.spacing.lg,
   },
-  quickActionButton: {
+  moduleWrapper: {
     width: '47%',
-    marginBottom: theme.spacing.sm,
   },
-  quickActionGradient: {
+  moduleCard: {
     borderRadius: theme.borderRadius.xl,
     paddingVertical: theme.spacing.xl,
     paddingHorizontal: theme.spacing.lg,
@@ -302,24 +470,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...theme.shadows.lg,
   },
-  quickActionContent: {
+  moduleContent: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  quickActionIconContainer: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
+  moduleIconContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     backgroundColor: 'rgba(255, 255, 255, 0.25)',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: theme.spacing.md,
   },
-  quickActionTitle: {
+  moduleIconLabel: {
+    fontSize: 20,
+    fontWeight: theme.typography.bold as any,
+    color: theme.colors.white,
+  },
+  moduleTitle: {
     fontSize: theme.typography.h6,
     fontWeight: theme.typography.bold,
     color: theme.colors.white,
     textAlign: 'center',
+  },
+  progressSection: {
+    marginTop: theme.spacing.xl,
+  },
+  sectionTitle: {
+    fontSize: theme.typography.h5,
+    fontWeight: theme.typography.bold,
+    color: theme.colors.textPrimary,
+    marginBottom: theme.spacing.md,
+  },
+  progressCard: {
+    marginTop: theme.spacing.sm,
   },
   progressContent: {
     alignItems: 'center',
@@ -339,8 +524,27 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.xs,
     textAlign: 'center',
   },
-  sampleLetters: {
-    fontSize: 32,
-    fontWeight: theme.typography.bold,
+  // Decorative animated shapes
+  shapeBase: {
+    position: 'absolute',
+  },
+  shapeCircle: {
+    borderRadius: 999,
+  },
+  shapeRounded: {
+    borderRadius: theme.borderRadius.xl,
+  },
+  // Simple triangle using rotation – used as a playful shape
+  shapeTriangle: {
+    borderRadius: theme.borderRadius.md,
+    transform: [{ rotate: '45deg' }],
+  },
+  cartoonBubble: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cartoonEmoji: {
+    fontSize: 22,
   },
 });

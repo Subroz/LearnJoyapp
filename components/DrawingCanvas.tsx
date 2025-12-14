@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useImperativeHandle } from 'react';
 import {
   View,
   StyleSheet,
@@ -17,14 +17,14 @@ interface Point {
   y: number;
 }
 
-interface PathData {
+export interface PathData {
   id: string;
   points: Point[];
   color: string;
   strokeWidth: number;
 }
 
-interface DrawingCanvasProps {
+export interface DrawingCanvasProps {
   onDrawingChange?: (paths: PathData[]) => void;
   canvasHeight?: number;
   brushColor?: string;
@@ -32,26 +32,34 @@ interface DrawingCanvasProps {
   backgroundColor?: string;
 }
 
-export const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
-  onDrawingChange,
-  canvasHeight = height * 0.6,
-  brushColor = theme.colors.primary,
-  brushSize = 5,
-  backgroundColor = theme.colors.white,
-}) => {
+export interface DrawingCanvasHandle {
+  clear: () => void;
+  undo: () => void;
+}
+
+const DrawingCanvasInner = (
+  {
+    onDrawingChange,
+    canvasHeight = height * 0.6,
+    brushColor = theme.colors.primary,
+    brushSize = 5,
+    backgroundColor = theme.colors.white,
+  }: DrawingCanvasProps,
+  ref: React.Ref<DrawingCanvasHandle>
+) => {
   const [paths, setPaths] = useState<PathData[]>([]);
   const [currentPath, setCurrentPath] = useState<Point[]>([]);
   const pathIdCounter = useRef(0);
 
   const createPathString = (points: Point[]): string => {
     if (points.length === 0) return '';
-    
+
     let pathString = `M ${points[0].x},${points[0].y}`;
-    
+
     for (let i = 1; i < points.length; i++) {
       pathString += ` L ${points[i].x},${points[i].y}`;
     }
-    
+
     return pathString;
   };
 
@@ -59,21 +67,21 @@ export const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
-      
+
       onPanResponderGrant: (evt: GestureResponderEvent) => {
         const locationX = evt.nativeEvent.locationX;
         const locationY = evt.nativeEvent.locationY;
-        
+
         setCurrentPath([{ x: locationX, y: locationY }]);
       },
-      
+
       onPanResponderMove: (evt: GestureResponderEvent) => {
         const locationX = evt.nativeEvent.locationX;
         const locationY = evt.nativeEvent.locationY;
-        
+
         setCurrentPath((prevPath) => [...prevPath, { x: locationX, y: locationY }]);
       },
-      
+
       onPanResponderRelease: () => {
         if (currentPath.length > 0) {
           const newPath: PathData = {
@@ -82,16 +90,34 @@ export const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
             color: brushColor,
             strokeWidth: brushSize,
           };
-          
+
           const newPaths = [...paths, newPath];
           setPaths(newPaths);
           setCurrentPath([]);
-          
+
           onDrawingChange?.(newPaths);
         }
       },
     })
   ).current;
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      clear: () => {
+        setPaths([]);
+        setCurrentPath([]);
+        onDrawingChange?.([]);
+      },
+      undo: () => {
+        if (paths.length === 0) return;
+        const newPaths = paths.slice(0, -1);
+        setPaths(newPaths);
+        onDrawingChange?.(newPaths);
+      },
+    }),
+    [paths, onDrawingChange]
+  );
 
   return (
     <View
@@ -115,7 +141,7 @@ export const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
               fill="none"
             />
           ))}
-          
+
           {/* Render current path being drawn */}
           {currentPath.length > 0 && (
             <Path
@@ -133,18 +159,9 @@ export const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
   );
 };
 
-// Ref methods for controlling the canvas
-export const DrawingCanvasRef = {
-  clear: (setPaths: React.Dispatch<React.SetStateAction<PathData[]>>) => {
-    setPaths([]);
-  },
-  
-  undo: (setPaths: React.Dispatch<React.SetStateAction<PathData[]>>) => {
-    setPaths((prev) => prev.slice(0, -1));
-  },
-  
-  getPaths: (paths: PathData[]) => paths,
-};
+export const DrawingCanvas = React.forwardRef<DrawingCanvasHandle, DrawingCanvasProps>(
+  DrawingCanvasInner
+);
 
 const styles = StyleSheet.create({
   container: {

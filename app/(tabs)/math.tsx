@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Animated,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '@/constants/theme';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/ui/Header';
@@ -19,9 +11,12 @@ import { generateMathProblem, MathOperation, Difficulty } from '@/utils/mathGene
 import { MathProblem as MathProblemType } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import { TrophyIcon } from '@/components/ui/AnimatedIcon';
+import { useRouter } from 'expo-router';
+import ScreenBackground from '@/components/ui/ScreenBackground';
 
 export default function MathScreen() {
   const { t, language } = useLanguage();
+  const router = useRouter();
   
   // State
   const [selectedOperation, setSelectedOperation] = useState<MathOperation>('addition');
@@ -85,6 +80,16 @@ export default function MathScreen() {
     setTotalProblems(0);
   };
 
+  const handleBackPress = () => {
+    if (!showSettings) {
+      // If the child is in practice mode, go back to the settings screen
+      resetToSettings();
+    } else {
+      // From settings, go back to the previous app screen
+      router.back();
+    }
+  };
+
   const operations: { type: MathOperation; label: string; icon: string; color: string }[] = [
     { type: 'addition', label: t('math.addition'), icon: 'add-circle', color: theme.colors.success },
     { type: 'subtraction', label: t('math.subtraction'), icon: 'remove-circle', color: theme.colors.error },
@@ -99,37 +104,14 @@ export default function MathScreen() {
   ];
 
   const renderSettings = () => (
-    <ScrollView 
-      style={styles.content} 
+    <ScrollView
+      style={styles.content}
       contentContainerStyle={styles.scrollContent}
       showsVerticalScrollIndicator={false}
     >
-      {/* Operation Selection */}
+      {/* Operation Selection + Difficulty above cards */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>{t('math.title')} Operations</Text>
-        <View style={styles.operationsGrid}>
-          {operations.map((op) => (
-            <TouchableOpacity
-              key={op.type}
-              style={[
-                styles.operationCard,
-                selectedOperation === op.type && styles.selectedCard,
-              ]}
-              onPress={() => setSelectedOperation(op.type)}
-              activeOpacity={0.7}
-            >
-              <View style={[styles.operationIcon, { backgroundColor: op.color }]}>
-                <Ionicons name={op.icon as any} size={32} color={theme.colors.white} />
-              </View>
-              <Text style={styles.operationLabel}>{op.label}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </View>
-
-      {/* Difficulty Selection */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Difficulty Level</Text>
+        {/* Difficulty as pill buttons */}
         <View style={styles.difficultyContainer}>
           {difficulties.map((diff) => (
             <TouchableOpacity
@@ -149,14 +131,25 @@ export default function MathScreen() {
               >
                 {diff.label}
               </Text>
-              <Text
-                style={[
-                  styles.difficultyDescription,
-                  difficulty === diff.level && styles.selectedDifficultyText,
-                ]}
-              >
-                {diff.description}
-              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <View style={styles.operationsGrid}>
+          {operations.map((op) => (
+            <TouchableOpacity
+              key={op.type}
+              style={[
+                styles.operationCard,
+                selectedOperation === op.type && styles.selectedCard,
+              ]}
+              onPress={() => setSelectedOperation(op.type)}
+              activeOpacity={0.7}
+            >
+              <View style={[styles.operationIcon, { backgroundColor: op.color }]}>
+                <Ionicons name={op.icon as any} size={32} color={theme.colors.white} />
+              </View>
+              <Text style={styles.operationLabel}>{op.label}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -236,39 +229,44 @@ export default function MathScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={[theme.colors.secondary, theme.colors.secondaryLight]}
-        style={styles.headerGradient}
-      >
+    <ScreenBackground section="math">
+      <SafeAreaView style={styles.container}>
+      <View style={styles.headerGradient}>
         <Header
           title={t('math.title')}
           subtitle={showSettings ? 'Choose your challenge' : `${selectedOperation} • ${difficulty}`}
           variant="transparent"
+          showBackButton={true}
+          onBackPress={handleBackPress}
           titleStyle={styles.headerTitle}
           subtitleStyle={styles.headerSubtitle}
         />
-      </LinearGradient>
+      </View>
 
       {showSettings ? renderSettings() : renderPractice()}
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: 'transparent',
   },
   headerGradient: {
-    paddingTop: 20,
+    paddingTop: 0,
+    backgroundColor: 'transparent',
   },
   headerTitle: {
     color: theme.colors.white,
-    fontSize: theme.typography.h3,
+    fontSize: theme.typography.h2,
+    fontWeight: theme.typography.bold,
+    letterSpacing: 1,
   },
   headerSubtitle: {
     color: theme.colors.white,
+    fontSize: theme.typography.h4,
     opacity: 0.9,
   },
   content: {
@@ -282,10 +280,11 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.xl,
   },
   sectionTitle: {
-    fontSize: theme.typography.h5,
+    fontSize: theme.typography.h3,
     fontWeight: theme.typography.bold,
     color: theme.colors.textPrimary,
-    marginBottom: theme.spacing.md,
+    marginBottom: theme.spacing.lg,
+    textAlign: 'center',
   },
   operationsGrid: {
     flexDirection: 'row',
@@ -305,7 +304,6 @@ const styles = StyleSheet.create({
   },
   selectedCard: {
     borderColor: theme.colors.primary,
-    backgroundColor: theme.colors.primaryLight + '20',
   },
   operationIcon: {
     width: 60,
@@ -322,32 +320,37 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   difficultyContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: theme.spacing.md,
+    marginTop: theme.spacing.md,
+    marginBottom: theme.spacing.lg,
   },
   difficultyButton: {
     backgroundColor: theme.colors.backgroundCard,
-    borderRadius: theme.borderRadius.lg,
-    padding: theme.spacing.lg,
+    borderRadius: theme.borderRadius.round,
+    paddingVertical: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.lg,
     borderWidth: 2,
     borderColor: 'transparent',
     ...theme.shadows.sm,
   },
   selectedDifficulty: {
     borderColor: theme.colors.accent,
-    backgroundColor: theme.colors.accentLight + '20',
+    backgroundColor: theme.colors.accent,
   },
   difficultyLabel: {
-    fontSize: theme.typography.h6,
+    fontSize: theme.typography.body,
     fontWeight: theme.typography.bold,
     color: theme.colors.textPrimary,
-    marginBottom: theme.spacing.xs,
   },
   difficultyDescription: {
     fontSize: theme.typography.caption,
     color: theme.colors.textSecondary,
   },
   selectedDifficultyText: {
-    color: theme.colors.accent,
+    color: theme.colors.white,
   },
   startButton: {
     marginTop: theme.spacing.xl,
@@ -357,7 +360,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.lg,
   },
   scoreCard: {
-    marginTop: theme.spacing.md,
+    marginTop: theme.spacing.sm,
     marginBottom: theme.spacing.md,
   },
   scoreContent: {

@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Alert,
-  Animated,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/ui/Header';
@@ -18,6 +10,7 @@ import Card from '@/components/ui/Card';
 import { Ionicons } from '@expo/vector-icons';
 import { speechService } from '@/services/speech';
 import { triggerHaptic } from '@/utils/haptics';
+import ScreenBackground from '@/components/ui/ScreenBackground';
 
 interface PracticeWord {
   id: string;
@@ -28,6 +21,7 @@ interface PracticeWord {
 
 export default function SpeakScreen() {
   const { t, language } = useLanguage();
+  const router = useRouter();
   
   const [selectedCategory, setSelectedCategory] = useState<string>('animals');
   const [isListening, setIsListening] = useState(false);
@@ -134,19 +128,19 @@ export default function SpeakScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={[theme.colors.accent, theme.colors.accentLight]}
-        style={styles.headerGradient}
-      >
+    <ScreenBackground section="voice">
+      <SafeAreaView style={styles.container}>
+      <View style={styles.headerGradient}>
         <Header
           title={t('voice.title')}
           subtitle="Practice pronunciation"
           variant="transparent"
+          showBackButton
+          onBackPress={() => router.back()}
           titleStyle={styles.headerTitle}
           subtitleStyle={styles.headerSubtitle}
         />
-      </LinearGradient>
+      </View>
 
       <ScrollView
         style={styles.content}
@@ -269,17 +263,19 @@ export default function SpeakScreen() {
           </Text>
         </View>
       </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: 'transparent',
   },
   headerGradient: {
     paddingTop: 20,
+    backgroundColor: 'transparent',
   },
   headerTitle: {
     color: theme.colors.white,

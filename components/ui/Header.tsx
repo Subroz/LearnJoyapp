@@ -7,7 +7,6 @@ import {
   TextStyle,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
 import Button from './Button';
@@ -76,11 +75,10 @@ const Header: React.FC<HeaderProps> = ({
 
   const getTitleStyles = (): TextStyle => {
     return {
-      fontSize: theme.typography.h4,
+      fontSize: theme.typography.h3,
       fontWeight: theme.typography.bold,
       color: theme.colors.textPrimary,
       textAlign: 'center',
-      flex: 1,
       ...titleStyle,
     };
   };
@@ -103,12 +101,15 @@ const Header: React.FC<HeaderProps> = ({
           title=""
           onPress={onBackPress || onLeftPress || (() => {})}
           variant="ghost"
-          icon={<Ionicons name="arrow-back" size={20} color={theme.colors.primary} />}
+          icon={<Ionicons name="chevron-back" size={28} color={theme.colors.white} />}
           style={{
             paddingHorizontal: theme.spacing.md,
-            paddingVertical: 6,
+            paddingVertical: theme.spacing.sm,
             borderRadius: theme.borderRadius.round,
-            backgroundColor: 'rgba(255,255,255,0.9)',
+            backgroundColor: theme.colors.secondary,
+            minWidth: 48,
+            minHeight: 48,
+            ...theme.shadows.md,
           }}
         />
       );
@@ -146,31 +147,40 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const renderContent = () => (
-    <View style={getHeaderStyles()}>
-      {renderLeftButton()}
+    <View style={[getHeaderStyles(), styles.headerWrapper]}>
+      {/* Back button positioned absolutely for true center alignment */}
+      {showBackButton && (
+        <View style={styles.absoluteBackButton}>
+          <Button
+            title=""
+            onPress={onBackPress || onLeftPress || (() => {})}
+            variant="ghost"
+            icon={<Ionicons name="chevron-back" size={28} color={theme.colors.white} />}
+            style={{
+              paddingHorizontal: theme.spacing.md,
+              paddingVertical: theme.spacing.sm,
+              borderRadius: theme.borderRadius.round,
+              backgroundColor: theme.colors.secondary,
+              minWidth: 48,
+              minHeight: 48,
+              ...theme.shadows.md,
+            }}
+          />
+        </View>
+      )}
       
+      {/* Centered title container */}
       <View style={styles.titleContainer}>
         <Text style={getTitleStyles()}>{title}</Text>
         {subtitle && <Text style={getSubtitleStyles()}>{subtitle}</Text>}
       </View>
       
-      {renderRightButton()}
+      {/* Right button or spacer for non-back-button headers */}
+      {!showBackButton && renderLeftButton()}
+      {!showBackButton && renderRightButton()}
+      {showBackButton && rightIcon && onRightPress && renderRightButton()}
     </View>
   );
-
-  if (variant === 'gradient' && gradientColors) {
-    return (
-      <SafeAreaView style={styles.safeArea}>
-        <LinearGradient
-          colors={gradientColors}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-        >
-          {renderContent()}
-        </LinearGradient>
-      </SafeAreaView>
-    );
-  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -180,29 +190,11 @@ const Header: React.FC<HeaderProps> = ({
 };
 
 // Specialized header components
-export const LearningHeader: React.FC<HeaderProps> = (props) => (
-    <Header
-    variant="gradient"
-    gradientColors={[theme.colors.primary, theme.colors.primaryLight] as const}
-    {...props}
-  />
-);
+export const LearningHeader: React.FC<HeaderProps> = (props) => <Header {...props} />;
 
-export const MathHeader: React.FC<HeaderProps> = (props) => (
-    <Header
-    variant="gradient"
-    gradientColors={[theme.colors.secondary, theme.colors.secondaryLight] as const}
-    {...props}
-  />
-);
+export const MathHeader: React.FC<HeaderProps> = (props) => <Header {...props} />;
 
-export const StoryHeader: React.FC<HeaderProps> = (props) => (
-    <Header
-    variant="gradient"
-    gradientColors={[theme.colors.accent, theme.colors.accentLight] as const}
-    {...props}
-  />
-);
+export const StoryHeader: React.FC<HeaderProps> = (props) => <Header {...props} />;
 
 export const TransparentHeader: React.FC<HeaderProps> = (props) => (
   <Header
@@ -213,12 +205,25 @@ export const TransparentHeader: React.FC<HeaderProps> = (props) => (
 
 const styles = StyleSheet.create({
   safeArea: {
-    backgroundColor: theme.colors.background,
+    // Let the parent screen control the background (e.g. gradients)
+    backgroundColor: 'transparent',
+  },
+  headerWrapper: {
+    position: 'relative',
   },
   titleContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: theme.spacing.md,
+  },
+  absoluteBackButton: {
+    position: 'absolute',
+    left: theme.spacing.lg,
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    zIndex: 10,
   },
 });
 

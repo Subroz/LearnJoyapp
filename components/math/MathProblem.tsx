@@ -144,6 +144,11 @@ export const MathProblem: React.FC<MathProblemProps> = ({
     }
   };
 
+  // Make hard problems more compact so answers stay visible on screen
+  const isHard = problem.difficulty === 'hard';
+  const visualSize = isHard ? 26 : 35;
+  const visualSpacing = isHard ? 4 : 6;
+
   return (
     <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
       <Card variant="elevated" padding="large" borderRadius="large" style={styles.container}>
@@ -158,7 +163,11 @@ export const MathProblem: React.FC<MathProblemProps> = ({
         {/* Visual Objects */}
         {showVisuals && problem.visualObjects && problem.visualObjects.length > 0 && (
           <View style={styles.visualsContainer}>
-            <CountableObjects visualObjects={problem.visualObjects} size={35} spacing={6} />
+            <CountableObjects
+              visualObjects={problem.visualObjects}
+              size={visualSize}
+              spacing={visualSpacing}
+            />
           </View>
         )}
 
@@ -242,6 +251,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.backgroundSecondary,
     borderRadius: theme.borderRadius.lg,
     padding: theme.spacing.md,
+    maxHeight: 260,
+    justifyContent: 'center',
   },
   promptText: {
     fontSize: theme.typography.body,
